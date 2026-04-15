@@ -11,7 +11,8 @@ Resources from Ben Lira's one-hour Claude Code demo to the Wharton marketing dep
 ├── demo_script.md         # Full runbook: what was demoed, exact prompts used, Q&A answers
 ├── slides.qmd             # Quarto source for the slide deck
 ├── slides.html            # Rendered slides (open in browser)
-└── skills/                # 15 slash-command skills, installable by copy-paste
+└── skills/                # 16 slash-command skills, installable by copy-paste
+    ├── archive-raw-data/
     ├── aspredicted/
     ├── data-analysis/
     ├── gws/
@@ -45,6 +46,7 @@ Resources from Ben Lira's one-hour Claude Code demo to the Wharton marketing dep
 
 | Skill | What to replace |
 |---|---|
+| `archive-raw-data` | `.env` needs `ZENODO_TOKEN` (from https://zenodo.org/account/settings/applications/tokens/) and `MONGODB_URI`. Requires `mongoexport` installed. |
 | `plate-check` | `{{WORKSPACE}}` (path to your comms/todo/current_state directory), `{{PHONE}}` (iMessage number or delete the notify step) |
 | `log-off` | `{{WORKSPACE}}`, `{{PHONE}}` (same as plate-check) |
 | `opportunity-hunter` | `{{REPORTS_DIR}}` (where opportunity reports get saved) |

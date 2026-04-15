@@ -17,6 +17,7 @@ Some skills need placeholder values replaced before first use — check the "Nee
 
 | Skill | What it does | Needs config? |
 |---|---|---|
+| [archive-raw-data](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/archive-raw-data) | End-of-collection workflow: export Mongo → JSONL, commit to repo, archive to Zenodo with DOI, optionally drop Mongo data | `ZENODO_TOKEN`, `MONGODB_URI` in `.env`; `mongoexport` installed |
 | [aspredicted](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/aspredicted) | Draft an AsPredicted pre-registration by walking through each field with you | No |
 | [data-analysis](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/data-analysis) | Default workflow for cleaning, exploration, visualization | No |
 | [gws](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/gws) | Interact with Google Workspace (Drive, Docs, Sheets, Gmail, Calendar) via the `gws` CLI | Requires `gws` CLI installed + authed |
@@ -47,7 +48,7 @@ Some skills need placeholder values replaced before first use — check the "Nee
 
 **For running studies:** `aspredicted`, `qualtrics-survey`, `render-survey`, `wbl-form-filler`
 
-**For data work:** `data-analysis`, `pipeline-audit`
+**For data work:** `data-analysis`, `archive-raw-data`, `pipeline-audit`
 
 **For workflow / time management:** `plate-check`, `log-off`, `opportunity-hunter`, `notify-me`
 
