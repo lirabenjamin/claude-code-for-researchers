@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>demo_script – Claude Code for Researchers</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a6716d435b7d433af430122f15daafcd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="slides.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Claude Code for Researchers</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./slides.html"> 
+<span class="menu-text">Slides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./demo_script.html" aria-current="page"> 
+<span class="menu-text">Demo Script</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./skills/index.html"> 
+<span class="menu-text">Skills</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./TEMPLATE_CLAUDE.html"> 
+<span class="menu-text">CLAUDE.md Template</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lirabenjamin/claude-code-for-researchers"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#claude-code-demo-runbook" id="toc-claude-code-demo-runbook" class="nav-link active" data-scroll-target="#claude-code-demo-runbook">Claude Code Demo — Runbook</a>
+  <ul class="collapse">
+  <li><a href="#pre-flight-checklist-do-in-this-order-last-15-min-before-demo" id="toc-pre-flight-checklist-do-in-this-order-last-15-min-before-demo" class="nav-link" data-scroll-target="#pre-flight-checklist-do-in-this-order-last-15-min-before-demo">Pre-flight checklist (do in this order, last 15 min before demo)</a></li>
+  <li><a href="#angela-intro-000100" id="toc-angela-intro-000100" class="nav-link" data-scroll-target="#angela-intro-000100">Angela intro — 0:00–1:00</a></li>
+  <li><a href="#preliminaries-1001100" id="toc-preliminaries-1001100" class="nav-link" data-scroll-target="#preliminaries-1001100">PRELIMINARIES — 1:00–11:00</a>
+  <ul class="collapse">
+  <li><a href="#why-bother-slide-2" id="toc-why-bother-slide-2" class="nav-link" data-scroll-target="#why-bother-slide-2">1:00–1:45 — Why bother? (slide 2)</a></li>
+  <li><a href="#claude-code-claude-chat-slides-34" id="toc-claude-code-claude-chat-slides-34" class="nav-link" data-scroll-target="#claude-code-claude-chat-slides-34">1:45–3:30 — Claude Code ≠ Claude Chat (slides 3–4)</a></li>
+  <li><a href="#skills-agents-mcp-slide-5" id="toc-skills-agents-mcp-slide-5" class="nav-link" data-scroll-target="#skills-agents-mcp-slide-5">3:30–5:30 — Skills, agents, MCP (slide 5)</a></li>
+  <li><a href="#how-skills-work-slides-67" id="toc-how-skills-work-slides-67" class="nav-link" data-scroll-target="#how-skills-work-slides-67">5:30–7:30 — How skills work (slides 6–7)</a></li>
+  <li><a href="#why-talk-not-type-slide-8" id="toc-why-talk-not-type-slide-8" class="nav-link" data-scroll-target="#why-talk-not-type-slide-8">7:30–8:15 — Why talk, not type (slide 8)</a></li>
+  <li><a href="#markdown-files-the-memory-slides-910" id="toc-markdown-files-the-memory-slides-910" class="nav-link" data-scroll-target="#markdown-files-the-memory-slides-910">8:15–10:30 — Markdown files = the memory (slides 9–10)</a></li>
+  <li><a href="#the-caveat-slide-11" id="toc-the-caveat-slide-11" class="nav-link" data-scroll-target="#the-caveat-slide-11">10:30–11:00 — The caveat (slide 11)</a></li>
+  </ul></li>
+  <li><a href="#survey-design-11002100" id="toc-survey-design-11002100" class="nav-link" data-scroll-target="#survey-design-11002100">SURVEY DESIGN — 11:00–21:00</a>
+  <ul class="collapse">
+  <li><a href="#point-at-the-skills-repo-1-min" id="toc-point-at-the-skills-repo-1-min" class="nav-link" data-scroll-target="#point-at-the-skills-repo-1-min">11:00–11:45 — Point at the skills repo (1 min)</a></li>
+  <li><a href="#qualtrics-build-the-joke-task-345-min" id="toc-qualtrics-build-the-joke-task-345-min" class="nav-link" data-scroll-target="#qualtrics-build-the-joke-task-345-min">11:45–15:30 — Qualtrics: build the joke task (3:45 min)</a></li>
+  <li><a href="#iterate-once-1-min" id="toc-iterate-once-1-min" class="nav-link" data-scroll-target="#iterate-once-1-min">15:30–16:30 — Iterate once (1 min)</a></li>
+  <li><a href="#drawbacks-of-qualtrics-1-min" id="toc-drawbacks-of-qualtrics-1-min" class="nav-link" data-scroll-target="#drawbacks-of-qualtrics-1-min">16:30–17:30 — Drawbacks of Qualtrics (1 min)</a></li>
+  <li><a href="#render-survey-extend-the-joke-task-3-min" id="toc-render-survey-extend-the-joke-task-3-min" class="nav-link" data-scroll-target="#render-survey-extend-the-joke-task-3-min">17:30–20:30 — Render-survey: extend the joke task (3 min)</a></li>
+  <li><a href="#transition-30-sec" id="toc-transition-30-sec" class="nav-link" data-scroll-target="#transition-30-sec">20:30–21:00 — Transition (30 sec)</a></li>
+  </ul></li>
+  <li><a href="#data-analysis-21003100" id="toc-data-analysis-21003100" class="nav-link" data-scroll-target="#data-analysis-21003100">DATA ANALYSIS — 21:00–31:00</a>
+  <ul class="collapse">
+  <li><a href="#clean-transform-5-min" id="toc-clean-transform-5-min" class="nav-link" data-scroll-target="#clean-transform-5-min">21:00–26:00 — Clean + transform (5 min)</a></li>
+  <li><a href="#analysis-condition-differences-bradley-terry-4-min" id="toc-analysis-condition-differences-bradley-terry-4-min" class="nav-link" data-scroll-target="#analysis-condition-differences-bradley-terry-4-min">26:00–30:00 — Analysis: condition differences + Bradley-Terry (4 min)</a></li>
+  <li><a href="#log-off-1-min" id="toc-log-off-1-min" class="nav-link" data-scroll-target="#log-off-1-min">30:00–31:00 — <code>/log-off</code> (1 min)</a></li>
+  </ul></li>
+  <li><a href="#writing-methods-and-results-31004100" id="toc-writing-methods-and-results-31004100" class="nav-link" data-scroll-target="#writing-methods-and-results-31004100">WRITING METHODS AND RESULTS — 31:00–41:00</a>
+  <ul class="collapse">
+  <li><a href="#why-do-writing-with-ai-1.5-min" id="toc-why-do-writing-with-ai-1.5-min" class="nav-link" data-scroll-target="#why-do-writing-with-ai-1.5-min">31:00–32:30 — Why do writing with AI? (1.5 min)</a></li>
+  <li><a href="#pipeline-audit-key-demo-3-min" id="toc-pipeline-audit-key-demo-3-min" class="nav-link" data-scroll-target="#pipeline-audit-key-demo-3-min">32:30–35:30 — <code>/pipeline-audit</code> — KEY DEMO (3 min)</a></li>
+  <li><a href="#latex-workflow-overleaf-collab-2-min" id="toc-latex-workflow-overleaf-collab-2-min" class="nav-link" data-scroll-target="#latex-workflow-overleaf-collab-2-min">35:30–37:30 — LaTeX workflow: Overleaf collab (2 min)</a></li>
+  <li><a href="#google-docs-caveat-1.5-min-the-punchline" id="toc-google-docs-caveat-1.5-min-the-punchline" class="nav-link" data-scroll-target="#google-docs-caveat-1.5-min-the-punchline">37:30–39:00 — Google Docs caveat (1.5 min) — the punchline</a></li>
+  <li><a href="#write-methods-results-pdf-live-on-the-side-2-min" id="toc-write-methods-results-pdf-live-on-the-side-2-min" class="nav-link" data-scroll-target="#write-methods-results-pdf-live-on-the-side-2-min">39:00–41:00 — Write methods + results, PDF live on the side (2 min)</a></li>
+  </ul></li>
+  <li><a href="#qa-41005100" id="toc-qa-41005100" class="nav-link" data-scroll-target="#qa-41005100">Q&amp;A — 41:00–51:00</a>
+  <ul class="collapse">
+  <li><a href="#katie-q1-as-collected-and-validating-data-as-collected-not-fabricated" id="toc-katie-q1-as-collected-and-validating-data-as-collected-not-fabricated" class="nav-link" data-scroll-target="#katie-q1-as-collected-and-validating-data-as-collected-not-fabricated">Katie Q1 — “As-Collected” and validating data as collected, not fabricated</a></li>
+  <li><a href="#katie-q2-checks-against-claude-hallucinations-in-analysis" id="toc-katie-q2-checks-against-claude-hallucinations-in-analysis" class="nav-link" data-scroll-target="#katie-q2-checks-against-claude-hallucinations-in-analysis">Katie Q2 — Checks against Claude hallucinations in analysis</a></li>
+  <li><a href="#open-floor-lyles-queue" id="toc-open-floor-lyles-queue" class="nav-link" data-scroll-target="#open-floor-lyles-queue">47:00–50:00 — Open floor / Lyle’s queue</a></li>
+  <li><a href="#off-ramp" id="toc-off-ramp" class="nav-link" data-scroll-target="#off-ramp">50:00–51:00 — Off-ramp</a></li>
+  </ul></li>
+  <li><a href="#fallback-plans" id="toc-fallback-plans" class="nav-link" data-scroll-target="#fallback-plans">Fallback plans</a></li>
+  <li><a href="#post-demo-debrief-do-within-1-hour" id="toc-post-demo-debrief-do-within-1-hour" class="nav-link" data-scroll-target="#post-demo-debrief-do-within-1-hour">Post-demo debrief (do within 1 hour)</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/lirabenjamin/claude-code-for-researchers/blob/main/demo_script.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="claude-code-demo-runbook" class="level1">
+<h1>Claude Code Demo — Runbook</h1>
+<p>Thu 2026-04-16, 2:00–3:00pm ET. Keep this file open on a second screen during practice runs.</p>
+<p>Time budget (58 min after Angela’s 1-min intro): - Preliminaries (10) — 1:00–11:00 - Survey Design (10) — 11:00–21:00 - Data Analysis (10) — 21:00–31:00 - Writing (10) — 31:00–41:00 - Q&amp;A (10) — 41:00–51:00</p>
+<hr>
+<section id="pre-flight-checklist-do-in-this-order-last-15-min-before-demo" class="level2">
+<h2 class="anchored" data-anchor-id="pre-flight-checklist-do-in-this-order-last-15-min-before-demo">Pre-flight checklist (do in this order, last 15 min before demo)</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">WisprFlow running + tested</label></li>
+<li><label><input type="checkbox">Zoom: screen-share permissions, “optimize for video” OFF, recording ON</label></li>
+<li><label><input type="checkbox">Two terminal windows open, both in <code>01 research/ai_agency/</code>, zoom level ~140%</label></li>
+<li><label><input type="checkbox">Browser tabs pre-loaded (not logged out): Qualtrics, Render dashboard, Overleaf for agency paper, AsPredicted page (for Katie Q), the shared Google Doc, <strong>this tutorial repo on GitHub</strong> (you’ll show it in Survey section)</label></li>
+<li><label><input type="checkbox"><code>slides.html</code> open in a third tab, full-screen tested</label></li>
+<li><label><input type="checkbox">Silence Slack, iMessage, Gmail notifications</label></li>
+<li><label><input type="checkbox">Clear <code>~/Downloads</code> clutter (you will screen-share)</label></li>
+<li><label><input type="checkbox">Start a fresh Claude Code session so context is clean</label></li>
+<li><label><input type="checkbox">Double-check <code>~/.claude/CLAUDE.md</code> doesn’t reveal anything private before scrolling it on-screen</label></li>
+<li><label><input type="checkbox">Water + backup mic + phone on Do Not Disturb</label></li>
+</ul>
+<p><strong>Cut list if running long</strong> (in order): <code>/latex-workflow</code> demo → second iteration of the joke survey → Bradley-Terry walkthrough depth → the research-writing detailed output. Never cut <code>/pipeline-audit</code> — it is the answer to Katie Q2. Never cut the Google Docs caveat — it’s the writing-section punchline.</p>
+<hr>
+</section>
+<section id="angela-intro-000100" class="level2">
+<h2 class="anchored" data-anchor-id="angela-intro-000100">Angela intro — 0:00–1:00</h2>
+<p>Mute yourself. Angela gives the 1-min intro. While she talks: - Verify screen share is on the slides - Pull up terminal #1 ready for prompts</p>
+<hr>
+</section>
+<section id="preliminaries-1001100" class="level2">
+<h2 class="anchored" data-anchor-id="preliminaries-1001100">PRELIMINARIES — 1:00–11:00</h2>
+<section id="why-bother-slide-2" class="level3">
+<h3 class="anchored" data-anchor-id="why-bother-slide-2">1:00–1:45 — Why bother? (slide 2)</h3>
+<blockquote class="blockquote">
+<p>“There’s a learning curve. We’re going to need to use the terminal. We’re going to install a few things. You might be thinking — wait, I already have Claude in a browser tab, why put in the effort?</p>
+<p>The honest answer: Claude Code lets you do much more, much faster. I think three or four hours of setup and learning will make you roughly <strong>twice as productive in the long run</strong>. That’s the tradeoff. You decide if it’s worth it for you. I’ll try to convince you it is.”</p>
+</blockquote>
+</section>
+<section id="claude-code-claude-chat-slides-34" class="level3">
+<h3 class="anchored" data-anchor-id="claude-code-claude-chat-slides-34">1:45–3:30 — Claude Code ≠ Claude Chat (slides 3–4)</h3>
+<p>Three concrete differences, then the unlock:</p>
+<blockquote class="blockquote">
+<p>“<strong>First: file manipulation.</strong> In the chat tab, you’re copy-pasting content back and forth — from the chat to your editor, from your editor back to the chat. Claude Code directly reads and edits files on your machine.</p>
+<p><strong>Second: code execution plus an iteration loop.</strong> Claude can run commands, see the output, catch its own errors, fix them, and try again. Test-operate-test-operate-exit. Depending on task complexity, I can give Claude a high-level instruction and it will work for 15-20 minutes — running, failing, fixing, running again — and come back with finished work. That loop is the whole reason it can take on bigger jobs.</p>
+<p><strong>Third: multi-agent.</strong> A chatbot is one voice talking to you. Claude Code spawns sub-agents under itself — parallel workers for different parts of a task — which makes bigger jobs feasible.”</p>
+</blockquote>
+<p>Transition to slide 4 (long-term memory):</p>
+<blockquote class="blockquote">
+<p>“And then the thing that actually turns this into a collaborator: <strong>long-term memory</strong>.</p>
+<p>Claude Chat forgets everything when you close the tab. Claude Code doesn’t. Via a handful of markdown files — <code>CLAUDE.md</code>, <code>comms.md</code>, <code>todo.md</code>, <code>current_state.md</code> — Claude builds project-specific memory. Who you are. What you’re working on. What’s been decided. What’s still open.</p>
+<p>Unlike a human collaborator, this memory is inspectable. You open the files. You can see what Claude remembers about your project. You can rewrite it. That’s the unlock.”</p>
+</blockquote>
+</section>
+<section id="skills-agents-mcp-slide-5" class="level3">
+<h3 class="anchored" data-anchor-id="skills-agents-mcp-slide-5">3:30–5:30 — Skills, agents, MCP (slide 5)</h3>
+<blockquote class="blockquote">
+<p>“Three primitives. I’ll go light on two of them and heavy on the third.</p>
+<p><strong>Skills</strong> are reusable slash commands. Markdown file, frontmatter, a recipe. Claude picks them up when the description matches what you’re asking for. This is where 90% of the value lives for researchers. Focus here.</p>
+<p><strong>Agents</strong> are the multi-agent thing I just mentioned — sub-processes Claude spawns for parallel work. Honestly, I haven’t found a ton of use for writing custom agents. The built-in ones are enough.</p>
+<p><strong>MCP servers</strong> are external tool connectors. I’ve got MCP servers for my email, my calendar, and — the more unusual one — my task manager. I can tell Claude what’s on my mind, how important each thing is, when it’s due, and it blocks time on my calendar and updates my task list accordingly. That’s <strong>Claude as my executive assistant</strong> — different job from Claude as my research assistant, which is what today is about. Happy to talk about the exec-assistant side offline.</p>
+<p>For the next hour, we’re focused on skills.”</p>
+</blockquote>
+</section>
+<section id="how-skills-work-slides-67" class="level3">
+<h3 class="anchored" data-anchor-id="how-skills-work-slides-67">5:30–7:30 — How skills work (slides 6–7)</h3>
+<p>Slides show the actual pipeline-audit SKILL.md excerpt + the “how you create / edit” patterns. Walk through verbally, don’t switch to terminal.</p>
+<blockquote class="blockquote">
+<p>“A skill is a markdown file with YAML frontmatter and a body. Name, description, instructions. Claude reads the description and decides when to invoke it based on what you ask for.</p>
+<p><strong>Two moves.</strong></p>
+<p><strong>One — you create skills by talking to Claude.</strong> You say: ‘make me a skill that does X.’ Claude scaffolds the SKILL.md. You review, edit if needed, done.</p>
+<p><strong>Two — you refine skills the same way.</strong> Yesterday I was using my Google Docs skill and noticed that after a certain point in the output the text was garbled — dark, broken formatting. Instead of debugging by hand, I told Claude: ‘after the third section the text goes garbled. Figure out why, and edit the skill so this doesn’t happen again.’ It diagnosed it and patched the skill. That’s the workflow.</p>
+<p>We have 15 skills in the repo — <code>/plate-check</code>, <code>/aspredicted</code>, <code>/pipeline-audit</code>, <code>/research-writing</code>, <code>/log-off</code>, and more. You build your own the exact same way — by asking.”</p>
+</blockquote>
+<p><em>No live skill creation. Keep moving.</em></p>
+</section>
+<section id="why-talk-not-type-slide-8" class="level3">
+<h3 class="anchored" data-anchor-id="why-talk-not-type-slide-8">7:30–8:15 — Why talk, not type (slide 8)</h3>
+<blockquote class="blockquote">
+<p>“I’m using WisprFlow right now — it’s free, you press a key, you talk, it transcribes. I type 40 words a minute, I speak 150.</p>
+<p>The point isn’t speed — it’s <strong>clarity</strong>. When I type, I truncate. I write ‘clean the data’ and hope Claude picks the right exclusions. When I talk, I say ‘clean the data, apply our standard exclusions — attention check, under-60-second completion, duplicate IPs — save the clean file with the commit hash in the name.’ Talking gets more specific instructions out of me. And more specific instructions get better output.”</p>
+</blockquote>
+</section>
+<section id="markdown-files-the-memory-slides-910" class="level3">
+<h3 class="anchored" data-anchor-id="markdown-files-the-memory-slides-910">8:15–10:30 — Markdown files = the memory (slides 9–10)</h3>
+<p>Slides show terminal-styled excerpts of a real <code>CLAUDE.md</code> and <code>comms.md</code>. Walk through verbally.</p>
+<blockquote class="blockquote">
+<p>“Four files turn Claude into a collaborator.</p>
+<p><strong><code>CLAUDE.md</code> — who you are to Claude.</strong> The slide shows an excerpt. Your role, your current priorities, your technical conventions, your writing preferences. Always loaded into every session. One big reason Claude gets better over time: you stop repeating yourself. I have a global one in <code>~/.claude/</code> and a project-specific one in each repo that overrides it where needed.</p>
+<p><strong><code>comms.md</code> — the async channel.</strong> When Claude has a question too big to answer inline, it writes here with a date. I answer when I have time. The excerpt on the slide is a real example from yesterday — Claude asking me how to handle low-rating jokes in the Bradley-Terry model. I answered later in the same file.</p>
+<p><em>Analogy that will probably land:</em> I already keep a running meeting doc with Angela — questions I want to raise, things I’ve decided, things she’s said. Most of you do the same with your advisor or a coauthor. <strong><code>comms.md</code> is that doc, with Claude.</strong> Same workflow, same purpose, same etiquette — dated entries, newest at top, answer when you have time. Nothing new to learn; just a new collaborator to apply it to.</p>
+<p><strong><code>current_state.md</code></strong> — one or two paragraphs on exactly where the project is. What we’re working on, what’s blocking, what’s next. New session starts — Claude reads this — we pick up without re-explaining.</p>
+<p><strong><code>todo.md</code></strong> — running task list Claude updates as we work. My log of what I asked for, what’s done, what’s still open.</p>
+<p>That’s the memory. Machine-readable and human-readable, both. I can inspect and edit everything Claude remembers.”</p>
+</blockquote>
+</section>
+<section id="the-caveat-slide-11" class="level3">
+<h3 class="anchored" data-anchor-id="the-caveat-slide-11">10:30–11:00 — The caveat (slide 11)</h3>
+<blockquote class="blockquote">
+<p>“Before we demo: you are responsible for checking everything. The output is good enough now that it will be tempting not to. Resist that. I’ll come back to this in Q&amp;A because Katie asked exactly this question.”</p>
+</blockquote>
+<p>Transition slide to Survey Design.</p>
+<hr>
+</section>
+</section>
+<section id="survey-design-11002100" class="level2">
+<h2 class="anchored" data-anchor-id="survey-design-11002100">SURVEY DESIGN — 11:00–21:00</h2>
+<section id="point-at-the-skills-repo-1-min" class="level3">
+<h3 class="anchored" data-anchor-id="point-at-the-skills-repo-1-min">11:00–11:45 — Point at the skills repo (1 min)</h3>
+<p>Open the tutorial GitHub repo in a browser tab (pin this for now — you’ll come back to it).</p>
+<blockquote class="blockquote">
+<p>“Quick note before we build. Every skill I use today is in this repo — link in the chat from Lyle in a second. You can clone it, copy-paste any of the 15 skills into <code>~/.claude/skills/</code>, and they work immediately. A few of them need you to replace a placeholder like <code>{WORKSPACE}</code> or a phone number — the README tells you which. That’s how you get started without waiting.”</p>
+</blockquote>
+</section>
+<section id="qualtrics-build-the-joke-task-345-min" class="level3">
+<h3 class="anchored" data-anchor-id="qualtrics-build-the-joke-task-345-min">11:45–15:30 — Qualtrics: build the joke task (3:45 min)</h3>
+<p>Switch to terminal.</p>
+<blockquote class="blockquote">
+<p>“Let’s build a real study. Something agency-flavored. People show up, do a creative task — write a joke — with or without AI help. Then we measure process agency, outcome agency, and meaning. And we randomize feedback.</p>
+<p>The qualtrics-survey skill I’m about to use isn’t built into Claude Code — it’s a Python package I wrote that calls the Qualtrics API. It’s public on GitHub, and the skill tells Claude to install it if it’s missing. Please file bugs or feature requests.”</p>
+</blockquote>
+<p>Prompt (via WisprFlow, plan mode): &gt; “/qualtrics-survey. Plan mode first. Build me a between-subjects pilot. Participants log in, see the instructions, write a short joke. Two conditions: with AI writing assistance or without. They answer three process-agency items. Then they get randomized feedback — positive or negative — independent of the actual joke. Then three outcome-agency items. Then three meaning items. 200 subjects on Prolific US. Install the qualtrics_sdk package from GitHub first if it’s not already there. Show me the item wording before you write any code.”</p>
+<p><strong>When the plan + items appear: read them on-stream.</strong> This is the check-your-work moment:</p>
+<blockquote class="blockquote">
+<p>“This is the verification step Katie asked about. I’m reading every item before any code runs. My global CLAUDE.md enforces this for anything that codes or rates text — you don’t let Claude ship until you’ve read what it’s going to build.”</p>
+</blockquote>
+<p>Approve the plan. Let it generate. Tab to Qualtrics, refresh, show the survey exists.</p>
+</section>
+<section id="iterate-once-1-min" class="level3">
+<h3 class="anchored" data-anchor-id="iterate-once-1-min">15:30–16:30 — Iterate once (1 min)</h3>
+<blockquote class="blockquote">
+<p>“Now a quick edit. I want a bot-resistant attention check after the manipulation.”</p>
+</blockquote>
+<p>Prompt: &gt; “Add an attention check after the manipulation, before the process-agency block. Use the cat-holding-a-math-problem format — an image of a cat holding a whiteboard with a simple arithmetic problem, and participants have to type the answer. Fail the survey if they get it wrong. Bots are bad at reading images of math, so this catches both inattentive humans and LLM-powered bots.”</p>
+<blockquote class="blockquote">
+<p>“You could keep iterating like this forever. I won’t — in practice I’d do maybe 5-6 rounds and call it good.”</p>
+</blockquote>
+</section>
+<section id="drawbacks-of-qualtrics-1-min" class="level3">
+<h3 class="anchored" data-anchor-id="drawbacks-of-qualtrics-1-min">16:30–17:30 — Drawbacks of Qualtrics (1 min)</h3>
+<blockquote class="blockquote">
+<p>“Two reasons Qualtrics isn’t always the right tool.</p>
+<p><strong>One: custom stuff is hard.</strong> Right now, feedback is randomized — participants get fake positive or negative feedback. What if I want <em>real</em> feedback instead? Every joke would need to be rated by other participants, and the feedback would need to be computed live. Qualtrics cannot do that. You need a server.</p>
+<p><strong>Two: iteration is slow.</strong> Every change requires the survey to be re-deployed and re-tested. On a self-hosted app, a code change is live the moment it pushes.</p>
+<p>Let’s move to the alternative.”</p>
+</blockquote>
+</section>
+<section id="render-survey-extend-the-joke-task-3-min" class="level3">
+<h3 class="anchored" data-anchor-id="render-survey-extend-the-joke-task-3-min">17:30–20:30 — Render-survey: extend the joke task (3 min)</h3>
+<blockquote class="blockquote">
+<p>“The render-survey skill scaffolds a full-stack web app — React front-end, Express back-end, MongoDB database — and deploys it to Render. The skill does the app scaffolding; you need a GitHub account, a Render account, and a MongoDB Atlas account to host. I won’t walk through that setup here, but it’s free for the scale a research lab needs, and happy to help you set it up in office hours after.”</p>
+</blockquote>
+<p>Open <code>agency6-experiment/</code> in Claude Code as the visible example. 30-second tour.</p>
+<p>Prompt: &gt; “/render-survey. Take the joke task we just built in Qualtrics, but change the feedback stage. Instead of randomized feedback, participants get real peer ratings of their joke — we collect ratings from previous participants, and if fewer than three have rated a joke, we backfill with AI ratings using the same rating prompt. Keep everything else identical. Scaffold the app.”</p>
+<p>Talking point while it builds:</p>
+<blockquote class="blockquote">
+<p>“Now — the reproducibility benefit, which is directly Katie’s first question. The git commit hash gets saved with every single participant’s data row. That means my dataset is tied to the exact version of the materials and code that produced it. <strong>Tamper-evident</strong>: if anyone changes a single byte of the materials or code, the commit hash changes, and the link breaks. You can roll back to any commit and see exactly what participants saw. Fully reproducible with zero extra effort. You cannot do this in Qualtrics.”</p>
+</blockquote>
+</section>
+<section id="transition-30-sec" class="level3">
+<h3 class="anchored" data-anchor-id="transition-30-sec">20:30–21:00 — Transition (30 sec)</h3>
+<blockquote class="blockquote">
+<p>“Okay — I’ve collected data. Let’s clean it and analyze it, live.”</p>
+</blockquote>
+<p>Name-drop: “<code>/wbl-form-filler</code> fills Wharton Behavioral Lab submission forms, and there’s a Chrome skill that can post HITs to Prolific — both save real hours, both are in the repo. Moving on.”</p>
+<hr>
+</section>
+</section>
+<section id="data-analysis-21003100" class="level2">
+<h2 class="anchored" data-anchor-id="data-analysis-21003100">DATA ANALYSIS — 21:00–31:00</h2>
+<p>Cleaning and analysis go in <strong>one QMD file</strong>, not separate scripts. Run the whole thing top to bottom as a literate document. Easy to read, easy to audit, easy to re-render.</p>
+<section id="clean-transform-5-min" class="level3">
+<h3 class="anchored" data-anchor-id="clean-transform-5-min">21:00–26:00 — Clean + transform (5 min)</h3>
+<p>Open <code>analysis/report.qmd</code> briefly to show where you’ll work.</p>
+<p>Prompt: &gt; “/data-analysis. I have the raw joke-task data in <code>data/raw/</code>. It’s messy — lots of metadata columns, unparsed feedback fields, condition codes that need decoding. Build a cleaning chunk in <code>analysis/report.qmd</code> that outputs a clean CSV with only the columns I need for analysis: participant ID, condition, joke text, joke rating if any, process-agency score, outcome-agency score, meaning score. Apply my standard exclusions: failed attention check, duration under 60 seconds, duplicate IPs. Save the clean file with the commit hash in the filename.”</p>
+<p>Narrate: &gt; “Cleaning lives inside the QMD, right next to the analysis. No separate preprocessing script. When someone wants to reproduce this paper, they render this one file and they see everything — the exclusions, the transforms, the models, the plots. No hidden state.”</p>
+</section>
+<section id="analysis-condition-differences-bradley-terry-4-min" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-condition-differences-bradley-terry-4-min">26:00–30:00 — Analysis: condition differences + Bradley-Terry (4 min)</h3>
+<p>Prompt: &gt; “Now run the analysis. Two parts. First: between-condition differences on process agency, outcome agency, and meaning — t-tests with 95% CIs and Cohen’s d.&nbsp;Second: Bradley-Terry model of joke quality, using the peer ratings as pairwise comparisons. We want to see if the AI-assisted jokes rank higher than solo jokes. Use <code>BradleyTerry2</code> or a lavaan-compatible formulation. Render the QMD to HTML when done.”</p>
+<p>Talking points while it runs: &gt; “Bradley-Terry is the right tool here because the data is pairwise — participants rated some jokes but not all, and we want a latent quality score that’s comparable across jokes. Don’t hardcode anything — every number in the output should come from a live computation.”</p>
+<blockquote class="blockquote">
+<p>“Notice the convention: lavaan for SEM-flavored stuff, not the mediation package. That’s a rule in my global CLAUDE.md — I set it once and never re-specify it. Claude just knows.”</p>
+</blockquote>
+<p>Show the rendered HTML. Point to one effect size: “That number would go directly into the paper.”</p>
+</section>
+<section id="log-off-1-min" class="level3">
+<h3 class="anchored" data-anchor-id="log-off-1-min">30:00–31:00 — <code>/log-off</code> (1 min)</h3>
+<p>Prompt: &gt; “/log-off”</p>
+<p>Narrate: &gt; “End-of-session ritual. Updates <code>todo.md</code> with what got done. Writes a session summary to <code>comms.md</code>. Overwrites <code>current_state.md</code> with a fresh cold-start handoff for next time. Commits and pushes if we’re in a git repo. I literally run this at the end of every work block — it’s the best habit I’ve picked up this year.”</p>
+<hr>
+</section>
+</section>
+<section id="writing-methods-and-results-31004100" class="level2">
+<h2 class="anchored" data-anchor-id="writing-methods-and-results-31004100">WRITING METHODS AND RESULTS — 31:00–41:00</h2>
+<section id="why-do-writing-with-ai-1.5-min" class="level3">
+<h3 class="anchored" data-anchor-id="why-do-writing-with-ai-1.5-min">31:00–32:30 — Why do writing with AI? (1.5 min)</h3>
+<blockquote class="blockquote">
+<p>“The benefit I care about most here isn’t speed. It’s <strong>reproducibility — no magic numbers</strong>.</p>
+<p>When you write methods and results by hand, every number in the manuscript is a potential bug. You compute the effect size, you type it into the draft, then the analysis changes — maybe you add an exclusion — and now your manuscript says 0.42 but the code produces 0.38. This happens constantly. It’s how errors survive into published papers.</p>
+<p>When Claude writes your methods and results inside a QMD or LaTeX document, every number is <strong>generated by code at render time</strong>. Change the exclusion, re-render, every number updates automatically. The manuscript is always in sync with the analysis. This is why QMD and LaTeX are worth the overhead.”</p>
+</blockquote>
+</section>
+<section id="pipeline-audit-key-demo-3-min" class="level3">
+<h3 class="anchored" data-anchor-id="pipeline-audit-key-demo-3-min">32:30–35:30 — <code>/pipeline-audit</code> — KEY DEMO (3 min)</h3>
+<blockquote class="blockquote">
+<p>“And this is the tool that catches it when you mess up. This is the one I’d tell everyone in this audience to install today.”</p>
+</blockquote>
+<p>Prompt: &gt; “/pipeline-audit”</p>
+<blockquote class="blockquote">
+<p>“It scans my code, my manuscript, and the outputs, and checks for internal consistency. Hardcoded numbers. Narrative claims that don’t match the results. Stats reported wrong. Figure captions that contradict the figure. It’s my direct answer to Katie’s hallucination question.”</p>
+</blockquote>
+<p>When it flags anything, read it out loud on-stream. If it flags nothing: “A clean audit means the paper is internally consistent right now. Worth running again after any change.”</p>
+</section>
+<section id="latex-workflow-overleaf-collab-2-min" class="level3">
+<h3 class="anchored" data-anchor-id="latex-workflow-overleaf-collab-2-min">35:30–37:30 — LaTeX workflow: Overleaf collab (2 min)</h3>
+<blockquote class="blockquote">
+<p>“My preferred writing setup: LaTeX via Overleaf, backed by a GitHub repo. Once the analysis is done and I’m drafting, this gives me real-time collaboration with coauthors without anyone breaking the numbers. Coauthors edit in Overleaf; Overleaf auto-syncs with GitHub; I pull on my side; numbers stay linked to the code that produced them.”</p>
+</blockquote>
+<p>Prompt: &gt; “/latex-workflow — commit the paper changes and push. Coauthors pick up in Overleaf.”</p>
+</section>
+<section id="google-docs-caveat-1.5-min-the-punchline" class="level3">
+<h3 class="anchored" data-anchor-id="google-docs-caveat-1.5-min-the-punchline">37:30–39:00 — Google Docs caveat (1.5 min) — the punchline</h3>
+<blockquote class="blockquote">
+<p>“Some coauthors won’t touch Overleaf. They live in Google Docs. There’s a skill for that — <code>/latex-gdoc-roundtrip</code> — which translates the LaTeX into a formatted Google Doc and brings edits back. Here’s the thing to understand though.</p>
+<p><strong>Once you move the text to Google Docs, you destroy the link between the numbers and the code.</strong></p>
+<p>Scenario: you write your results section with live numbers in LaTeX. You export to Google Docs. Your coauthor edits the prose. Great, everyone’s happy. Then you decide to exclude participants who reported cheating. The analysis re-runs, the numbers should all change — but the numbers are now frozen strings inside a Google Doc. Somebody has to notice the discrepancy and hand-edit each one. That’s where errors come from.</p>
+<p>LaTeX + Overleaf keeps the link alive the whole way. Google Docs breaks it. If you have to use Docs, use it for the final polish — after your numbers are locked.”</p>
+</blockquote>
+</section>
+<section id="write-methods-results-pdf-live-on-the-side-2-min" class="level3">
+<h3 class="anchored" data-anchor-id="write-methods-results-pdf-live-on-the-side-2-min">39:00–41:00 — Write methods + results, PDF live on the side (2 min)</h3>
+<p>Set up: PDF of the paper open in Preview on one side, terminal on the other.</p>
+<p>Prompt: &gt; “/research-writing. The analysis is done. Write the methods and results sections. For methods: describe participants (pull real demographics from the data), describe materials (link to the GitHub commit for the survey), describe the procedure. For results: describe the condition differences on process agency, outcome agency, and meaning, then describe the Bradley-Terry quality comparison. Use my writing conventions from global CLAUDE.md — strong topic sentences, no passive voice, no vague quantifiers, always quantify.”</p>
+<blockquote class="blockquote">
+<p>“Watch the PDF. I’m going to fire comments at Claude — ‘tighten this paragraph,’ ‘move the effect size here,’ ‘the topic sentence buries the lede’ — and you’ll see the PDF update in real time on the side. This is the loop.”</p>
+</blockquote>
+<p>Fire 2-3 edits verbally, let the PDF re-render live.</p>
+<p>Transition to Q&amp;A.</p>
+<hr>
+</section>
+</section>
+<section id="qa-41005100" class="level2">
+<h2 class="anchored" data-anchor-id="qa-41005100">Q&amp;A — 41:00–51:00</h2>
+<p>Lyle has been collecting questions in chat. Take his queue.</p>
+<section id="katie-q1-as-collected-and-validating-data-as-collected-not-fabricated" class="level3">
+<h3 class="anchored" data-anchor-id="katie-q1-as-collected-and-validating-data-as-collected-not-fabricated">Katie Q1 — “As-Collected” and validating data as collected, not fabricated</h3>
+<p><strong>Short answer to deliver:</strong></p>
+<blockquote class="blockquote">
+<p>“AsCollected is a registry where you deposit a row per study describing: when the data was collected, where, the data ID, the non-author contributors, and anything else. Author identity is independent of the data, which is good for us because it means we can register the data without complicating authorship.</p>
+<p>Here’s what I do that slots into AsCollected cleanly: <strong>Prolific is the pool</strong>, which is a clean ‘where.’ The <strong>raw data source is a timestamped MongoDB collection</strong> — every row has a server-side timestamp, not a client one, so fabrication would need to beat Mongo’s append log. I can post the whole raw database alongside the paper. And the <strong>data ID is the GitHub commit hash</strong> at the time of data collection — so if anyone changes a single byte of the materials or code, the hash changes, and the link breaks. The provenance is tamper-evident.</p>
+<p>Full provenance claim: ‘Pool = Prolific; raw data = timestamped Mongo dump posted at URL X; data ID = git SHA abc123, which uniquely identifies the exact materials and code that generated this data.’ That’s as-collected, not fabricated.”</p>
+</blockquote>
+</section>
+<section id="katie-q2-checks-against-claude-hallucinations-in-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="katie-q2-checks-against-claude-hallucinations-in-analysis">Katie Q2 — Checks against Claude hallucinations in analysis</h3>
+<p><strong>Short answer to deliver:</strong></p>
+<blockquote class="blockquote">
+<p>“Two mechanisms and an opinion.</p>
+<p><strong>Mechanism one: <code>/pipeline-audit</code></strong>, which I just showed. Every time I change anything in the code or the manuscript, it re-audits: hardcoded numbers, narrative-vs-result mismatches, stats-reporting errors. If the audit is clean, the paper is internally consistent.</p>
+<p><strong>Mechanism two: read the QMD, line by line.</strong> I print the rendered HTML and read it top to bottom, with the code chunks visible. This is non-negotiable for any analysis I’m putting my name on. Takes 20 minutes for a typical paper. The QMD format is designed for this — executable code and narrative prose in one document in reading order.</p>
+<p><strong>The opinion:</strong> I think well-prompted Claude code is, on average, cleaner and less bug-prone than what I’d write by hand. Humans forget to apply exclusions consistently. Humans hardcode magic numbers. Humans write <code>rowwise</code> when they meant <code>groupwise</code>. Claude does these things less often than I do, provided I’ve told it clearly what I want. The check-your-work discipline is the same you’d apply to an RA’s code — just faster, cheaper, more iterable.”</p>
+</blockquote>
+</section>
+<section id="open-floor-lyles-queue" class="level3">
+<h3 class="anchored" data-anchor-id="open-floor-lyles-queue">47:00–50:00 — Open floor / Lyle’s queue</h3>
+<p>If no questions in chat, ask via Lyle: &gt; “What’s one research task you’d want to see done this way? Drop it in chat — I’ll try one live if we have time, otherwise bring it to office hours after.”</p>
+</section>
+<section id="off-ramp" class="level3">
+<h3 class="anchored" data-anchor-id="off-ramp">50:00–51:00 — Off-ramp</h3>
+<blockquote class="blockquote">
+<p>“Thanks for staying muted. Angela, Lyle — thank you. Sticking around for 30 min on this Zoom for one-on-one setup help. Recording and skills repo in the shared doc.”</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="fallback-plans" class="level2">
+<h2 class="anchored" data-anchor-id="fallback-plans">Fallback plans</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>If this breaks…</th>
+<th>Do this</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Qualtrics API 401s</td>
+<td>Switch to showing the last survey you built on qualtrics.com; verbally describe what you would have asked for.</td>
+</tr>
+<tr class="even">
+<td><code>qualtrics_sdk</code> package install fails</td>
+<td>Show the <code>/qualtrics-survey</code> SKILL.md directly; explain the package is on GitHub and recovery is a 5-line fix.</td>
+</tr>
+<tr class="odd">
+<td>Render deployment fails</td>
+<td>Read the <code>/render-survey</code> SKILL.md + show <code>agency6-experiment/</code> structure; skip the live build.</td>
+</tr>
+<tr class="even">
+<td>QMD render fails mid-demo</td>
+<td>Show the <code>.qmd</code> file itself; say “in practice, I’d step through chunk by chunk.”</td>
+</tr>
+<tr class="odd">
+<td>Bradley-Terry package missing</td>
+<td>Fall back to a simpler “mean rating per condition” analysis. Acknowledge: “the full BT analysis would take this one extra step.”</td>
+</tr>
+<tr class="even">
+<td><code>/pipeline-audit</code> finds nothing to flag</td>
+<td>“Clean audit means the paper is currently consistent — here’s a screenshot from when it caught a real bug.” Have a screenshot ready.</td>
+</tr>
+<tr class="odd">
+<td><code>/latex-gdoc-roundtrip</code> auth fails</td>
+<td>Skip the demo, deliver the Google Docs caveat verbally. That caveat is the punchline, not the live demo.</td>
+</tr>
+<tr class="even">
+<td>Claude Code hangs on a long task</td>
+<td>Ctrl-C, say “in practice I’d let it run in the background or use <code>/loop</code>.” Move on.</td>
+</tr>
+<tr class="odd">
+<td>WisprFlow dies</td>
+<td>Switch to keyboard, acknowledge, keep going.</td>
+</tr>
+<tr class="even">
+<td>Full terminal crash</td>
+<td>Second terminal is pre-cd’d.&nbsp;Switch windows.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="post-demo-debrief-do-within-1-hour" class="level2">
+<h2 class="anchored" data-anchor-id="post-demo-debrief-do-within-1-hour">Post-demo debrief (do within 1 hour)</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Note what ran over-time, what went faster than planned</label></li>
+<li><label><input type="checkbox">Note which prompts landed, which needed re-phrasing live</label></li>
+<li><label><input type="checkbox">Save chat transcript from Zoom</label></li>
+<li><label><input type="checkbox">Update this file for the potential sequel Angela mentioned</label></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/lirabenjamin\.github\.io\/claude-code-for-researchers");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lirabenjamin/claude-code-for-researchers/blob/main/demo_script.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div></div></footer></body></html>
