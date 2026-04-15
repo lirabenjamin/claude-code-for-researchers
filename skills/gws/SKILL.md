@@ -153,3 +153,43 @@ When inserting content into a Google Doc (especially tables), character indices 
 - Google Slides: `application/vnd.google-apps.presentation`
 - Google Forms: `application/vnd.google-apps.form`
 - Folders: `application/vnd.google-apps.folder`
+
+## Google Slides — Canvas Size Gotcha (READ BEFORE POSITIONING ELEMENTS)
+
+**The default widescreen slide canvas is 720 × 405 PT, NOT 960 × 540 PT.**
+
+`presentations.create` returns a presentation whose `pageSize` is:
+- `width`:  9,144,000 EMU  =  **720 PT**  (10 inches)
+- `height`: 5,143,500 EMU  =  **405 PT**  (7.5 inches)
+
+Google's own marketing renders (1920×1080 "16:9") make people assume a 960×540 canvas. It is not. If you hardcode positions assuming 960×540, every element will overflow the right and bottom edges by ~33%.
+
+**Three rules:**
+
+1. **Always fetch `pageSize` before positioning elements.** Do not assume.
+   ```bash
+   gws slides presentations get --params '{"presentationId": "...", "fields": "pageSize"}'
+   ```
+
+2. **Convert EMU → PT before using in `transform`/`size`:** divide EMU by 12,700.
+   - 914,400 EMU = 1 inch
+   - 12,700 EMU  = 1 PT
+   - 1 inch      = 72 PT
+
+3. **Prefer fractional/relative positioning over absolute PT.** If you must author at a fixed "design canvas" (e.g., 960×540), apply a scale factor at write time:
+   ```python
+   SCALE_X = real_width_pt / 960
+   SCALE_Y = real_height_pt / 540
+   # every translateX/translateY/width/height gets multiplied by the scale
+   ```
+   This lets the same layout code work across 4:3, 16:9, and custom-sized decks.
+
+**Diagnosing overflow after the fact:** if every element sits partly off-slide or diagrams look "blown up," the canvas-size assumption is almost always the cause. Open `presentations.get` → `pageSize` and compare to what your code assumed.
+
+## Google Slides — Common Batch-Update Patterns
+
+1. **Slide object IDs must be globally unique across the presentation**, including across multiple `batchUpdate` calls. Use run-specific prefixes (e.g., `s{uuid}_{index}`) to avoid "The object ID ... should be unique" errors from stale IDs left by previous partial runs.
+2. **Delete before recreate when iterating on a layout.** Fetch existing slides, delete them, then create fresh. `deleteObject` on a slide cascades to its elements.
+3. **`createSlide` with `predefinedLayout: BLANK`** is usually easier than trying to work with layout placeholders — you get full positional control.
+4. **Text styling happens in three steps** per text box: `createShape` (text box) → `insertText` → `updateTextStyle` / `updateParagraphStyle` with `textRange: {type: ALL}`.
+5. **Arrows = lines with `endArrow: FILL_ARROW`.** Use `updateLineProperties` after `createLine`.
