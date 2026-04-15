@@ -7,9 +7,51 @@ description: Build a Qualtrics survey from specs using the qualtrics_sdk Python 
 
 You are building a Qualtrics survey using the `qualtrics_sdk` Python package. The user will describe what they want, and you will write and execute a Python script that creates the survey via the Qualtrics API.
 
-## Setup
+## Step 0 — Precondition checks (MANDATORY, before writing any script)
 
-The script must start with:
+Run these three checks in order. Do not skip. Do not defer. If any fails, stop and report the failure to the user — do not proceed to script generation.
+
+### 0a. Is `qualtrics_sdk` importable?
+
+```bash
+python -c "import qualtrics_sdk; print('ok')" 2>&1
+```
+
+- Prints `ok` → continue to 0b.
+- Prints `ModuleNotFoundError` → install it:
+  ```bash
+  pip install git+https://github.com/lirabenjamin/qualtricsapi.git
+  ```
+  Then re-run the import check. If install fails:
+  - No `git` in PATH → tell the user to install git first (e.g., `brew install git` or `sudo apt install git`).
+  - Network/SSL error → tell the user they likely need to set a proxy or check their connection; do NOT silently continue.
+  - Permission error → retry with `pip install --user git+https://...` and report.
+
+### 0b. Is the API token configured?
+
+Check, in order:
+1. `.env` in the current directory containing `QUALTRICS_API_TOKEN=...`
+2. Exported env var: `echo $QUALTRICS_API_TOKEN`
+
+If neither is set, **stop and ask the user** for:
+- Their Qualtrics API token (found at: *qualtrics.com → Account Settings → Qualtrics IDs → API → Token*)
+- Their data center subdomain (e.g., `upenn.qualtrics.com`, `iad1.qualtrics.com`, etc. — visible in the URL when they're logged in).
+
+Offer to create a `.env` file for them once they share the values. Never hardcode the token in the script itself.
+
+### 0c. Is `python-dotenv` installed?
+
+```bash
+python -c "import dotenv; print('ok')" 2>&1
+```
+
+If missing: `pip install python-dotenv`. This is a hard dependency of the script header below.
+
+Only after all three checks pass may you proceed to write the script.
+
+---
+
+## Script header (required for every generated script)
 
 ```python
 import os
@@ -22,14 +64,6 @@ api = QualtricsAPI(
     data_center=os.getenv("QUALTRICS_DATA_CENTER", "upenn.qualtrics.com")
 )
 ```
-
-Ensure the working environment has `qualtrics_sdk` installed. If not, install it:
-
-```bash
-pip install git+https://github.com/lirabenjamin/qualtricsapi.git
-```
-
-Also ensure a `.env` file exists with `QUALTRICS_API_TOKEN` and optionally `QUALTRICS_DATA_CENTER`.
 
 ## Available Methods
 
@@ -134,6 +168,7 @@ api.create_multiple_choice_question(survey_id, f"{img}<br>What is this?", ["A", 
 
 ## Workflow
 
+0. **Run Step 0 precondition checks.** If any fail, stop and report — do not silently continue.
 1. **Parse the user's survey spec** into blocks, questions, logic, and embedded data.
 2. **Write a single Python script** that creates the entire survey. Name it descriptively (e.g., `create_[study_name]_survey.py`).
 3. **Make all questions required by default.** After creating each question (except descriptive text), call `api.update_question()` to add force response validation:
