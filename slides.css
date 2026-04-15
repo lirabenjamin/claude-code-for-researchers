@@ -1,0 +1,25 @@
+/* Make code blocks look more terminal-like and fit longer excerpts */
+.reveal pre {
+  font-size: 0.55em;
+  line-height: 1.35;
+  box-shadow: none;
+  border: 1px solid #ddd;
+}
+
+.reveal pre code {
+  max-height: 700px;
+  padding: 1.2em;
+  background: #fafafa;
+  color: #222;
+  font-family: "JetBrains Mono", "Fira Code", Menlo, monospace;
+}
+
+/* Scrollable slides — let long excerpts scroll within the slide area */
+.reveal .slides section.scrollable {
+  overflow-y: auto;
+}
+
+/* Tighter body text on excerpt-heavy slides */
+.reveal h2 {
+  margin-bottom: 0.5em;
+}

@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: _site.nosync
+  render:
+    - "index.qmd"
+    - "demo_script.md"
+    - "TEMPLATE_CLAUDE.md"
+    - "slides.qmd"
+    - "skills/index.qmd"
+
+  resources:
+    - "skills/*/SKILL.md"
+
+website:
+  title: "Claude Code for Researchers"
+  description: "Slides, script, and 15 skills from Ben Lira's Claude Code demo at Wharton."
+  site-url: "https://lirabenjamin.github.io/claude-code-for-researchers"
+  repo-url: "https://github.com/lirabenjamin/claude-code-for-researchers"
+  repo-actions: [source]
+  navbar:
+    background: primary
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Slides
+        href: slides.qmd
+      - text: Demo Script
+        href: demo_script.md
+      - text: Skills
+        href: skills/index.qmd
+      - text: CLAUDE.md Template
+        href: TEMPLATE_CLAUDE.md
+    right:
+      - icon: github
+        href: https://github.com/lirabenjamin/claude-code-for-researchers
+        aria-label: GitHub
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    css: slides.css
+    code-copy: true
+    anchor-sections: true
+  revealjs:
+    theme: simple
+    slide-number: true
+    progress: true
+    controls: true
+    transition: fade
+    width: 1280
+    height: 800
+    css: slides.css

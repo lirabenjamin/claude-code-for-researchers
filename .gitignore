@@ -1,0 +1,21 @@
+.DS_Store
+.env
+.env.local
+*.log
+
+# Quarto render artifacts (GitHub Actions rebuilds the site on every push)
+.quarto/
+/.quarto/
+_site/
+_site.nosync/
+_freeze/
+site_libs/
+
+# Top-level rendered pages — built by the CI pipeline, not committed
+/index.html
+/demo_script.html
+/TEMPLATE_CLAUDE.html
+/slides.html
+/slides_files/
+/skills/index.html
+/skills/**/*.html

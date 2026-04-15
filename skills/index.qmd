@@ -1,0 +1,54 @@
+---
+title: "Skills"
+subtitle: "15 slash commands for research work"
+---
+
+Each skill is a single `SKILL.md` file. Install by copying the folder into `~/.claude/skills/` and restarting Claude Code:
+
+```bash
+cp -r skills/<skill-name> ~/.claude/skills/
+```
+
+Some skills need placeholder values replaced before first use — check the "Needs config?" column below. Skill names link to the source on GitHub, where `SKILL.md` renders cleanly.
+
+---
+
+## Skills overview
+
+| Skill | What it does | Needs config? |
+|---|---|---|
+| [aspredicted](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/aspredicted) | Draft an AsPredicted pre-registration by walking through each field with you | No |
+| [data-analysis](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/data-analysis) | Default workflow for cleaning, exploration, visualization | No |
+| [gws](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/gws) | Interact with Google Workspace (Drive, Docs, Sheets, Gmail, Calendar) via the `gws` CLI | Requires `gws` CLI installed + authed |
+| [latex-gdoc-roundtrip](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/latex-gdoc-roundtrip) | Push a LaTeX paper to a formatted Google Doc for coauthor review; pull edits back | Requires `gws` CLI |
+| [latex-workflow](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/latex-workflow) | Build, commit, push a LaTeX paper; coauthors edit in Overleaf | No |
+| [log-off](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/log-off) | End-of-session ritual — updates todo/comms/current_state and creates a handoff | `{{WORKSPACE}}`, `{{PHONE}}` |
+| [notify-me](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/notify-me) | Send yourself an iMessage when a long task finishes | `{{PHONE}}`; macOS only |
+| [opportunity-hunter](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/opportunity-hunter) | Find and rank jobs, grants, prizes, fellowships from your profile | `{{REPORTS_DIR}}`; profile in CLAUDE.md |
+| [pipeline-audit](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/pipeline-audit) | Audit a data→code→output→manuscript pipeline for inconsistencies and magic numbers | No |
+| [plate-check](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/plate-check) | Weekly review pulling from Gmail, Calendar, tasks, todo.md; generates a dashboard | `{{WORKSPACE}}`, `{{PHONE}}` |
+| [qualtrics-survey](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/qualtrics-survey) | Build Qualtrics surveys via the API | `.env` with `QUALTRICS_API_TOKEN` |
+| [quarto-version-toggle](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/quarto-version-toggle) | Render one Quarto HTML doc with multiple pre-rendered versions, switchable via buttons | No |
+| [render-survey](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/render-survey) | Scaffold and deploy a full-stack behavioral research web app to Render | Render + Mongo Atlas + `OPENAI_API_KEY` |
+| [research-writing](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/research-writing) | Draft methods, results, or discussion sections following your conventions | No |
+| [wbl-form-filler](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/wbl-form-filler) | Fill Wharton Behavioral Lab study submission forms on JotForm | Wharton-specific; all defaults need replacing |
+
+---
+
+## Install flow
+
+1. `cp -r skills/<name> ~/.claude/skills/`
+2. `grep {{ ~/.claude/skills/<name>/SKILL.md` — if this returns hits, edit the file and replace placeholders.
+3. Restart Claude Code. The skill fires as `/<name>`.
+
+## Categories
+
+**For writing papers:** `pipeline-audit`, `research-writing`, `latex-workflow`, `latex-gdoc-roundtrip`, `quarto-version-toggle`
+
+**For running studies:** `aspredicted`, `qualtrics-survey`, `render-survey`, `wbl-form-filler`
+
+**For data work:** `data-analysis`, `pipeline-audit`
+
+**For workflow / time management:** `plate-check`, `log-off`, `opportunity-hunter`, `notify-me`
+
+**For Google Workspace integration:** `gws`, `latex-gdoc-roundtrip`

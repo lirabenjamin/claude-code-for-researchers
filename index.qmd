@@ -1,0 +1,53 @@
+---
+title: "Claude Code for Researchers"
+subtitle: "Materials from Ben Lira's one-hour demo at Wharton, 2026-04-16"
+---
+
+This site hosts everything from the Claude Code demo: the [slide deck](slides.qmd), the [full runbook](demo_script.md) with every prompt used, a [CLAUDE.md template](TEMPLATE_CLAUDE.md), and [15 skills](skills/index.qmd) packaged for copy-paste install.
+
+Everything is free to fork, adapt, and re-share.
+
+---
+
+## Start here
+
+If you've never used Claude Code before:
+
+1. **Install Claude Code.** [Follow the official install guide](https://docs.anthropic.com/claude/docs/claude-code).
+2. **Install WisprFlow** (optional but recommended). Talking beats typing.
+3. **Copy the CLAUDE.md template.** Grab [`TEMPLATE_CLAUDE.md`](TEMPLATE_CLAUDE.md), fill in your own role/projects/preferences, and save it to `~/.claude/CLAUDE.md`. This is the single highest-leverage thing you can do.
+4. **Install one skill.** Pick one from [the skills page](skills/index.qmd) that matches something you already do manually. `/pipeline-audit` is a good first choice if you write papers; `/data-analysis` is a good first choice if you don't.
+
+## Installing a skill
+
+```bash
+# From this repo's root:
+cp -r skills/pipeline-audit ~/.claude/skills/
+```
+
+Restart Claude Code. The skill is now callable as `/pipeline-audit`.
+
+Some skills need placeholder variables filled in (paths, phone numbers, credentials) — grep for `{{` in the SKILL.md before first use. [The skills page](skills/index.qmd) lists what each one needs.
+
+## Navigation
+
+- [**Slides**](slides.qmd) — the deck Ben used during the demo (reveal.js; arrow keys to advance)
+- [**Demo script**](demo_script.md) — every prompt Ben spoke into WisprFlow, with timing, fallback plans, and pre-scripted answers to audience questions
+- [**Skills**](skills/index.qmd) — 15 slash commands you can install
+- [**CLAUDE.md template**](TEMPLATE_CLAUDE.md) — the starter file for your own global memory
+
+## About the demo
+
+**Audience:** Wharton marketing department + invited colleagues. Third-year psychology PhD student as the target persona.
+
+**Running example:** a joke-writing task with AI assistance, agency measures, and peer ratings — built live in Qualtrics, then rebuilt as a self-hosted web app to show why self-hosting matters for reproducibility.
+
+**Format:** all live, no pre-recorded segments, one hour, Q&A in final 10 minutes.
+
+## Reporting bugs
+
+File issues on [the repo](https://github.com/lirabenjamin/claude-code-for-researchers). If a skill breaks or a placeholder is missing, flag it.
+
+## License
+
+Materials shared freely. Adapt, fork, improve, re-share. No warranty — you are responsible for checking what Claude produces. See the [demo script's Q&A section](demo_script.md#qa--41005100) for the specific answer on how to verify AI-generated analysis code.

@@ -1,0 +1,302 @@
+---
+title: "Claude Code for Research"
+subtitle: "A one-hour demo"
+author: "Ben Lira"
+date: "2026-04-16"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    progress: true
+    controls: true
+    hash-type: number
+    transition: fade
+    width: 1280
+    height: 800
+    code-line-numbers: false
+    css: slides.css
+---
+
+## Today
+
+1. Preliminaries — why, how, primitives
+2. Survey design — Qualtrics + custom web apps
+3. Data analysis — cleaning + analysis, live
+4. Writing — methods, results, reproducibility
+5. Q&A
+
+Running example: a **joke-writing task** with AI assistance, agency measures, and peer ratings.
+
+Everything is live. Lyle handles chat. All materials — slides, script, skills — are on the repo linked in chat.
+
+---
+
+## Why bother?
+
+- **Learning curve is real.** You'll touch the terminal. You'll install a few things.
+- **Payoff is ~2× productivity.** Roughly 3-4 hours of setup for a durable speedup.
+
+Four reasons the speedup happens:
+
+- **More productivity** — more shipped per unit effort
+- **Faster iteration** — experiment at conversation speed
+- **Fewer errors** — well-prompted AI code beats most hand-written code
+- **Reproducibility by design** — commit hash → dataset → analysis → manuscript, all linked
+
+You decide if the tradeoff is worth it. I think it is.
+
+---
+
+## Claude Code ≠ Claude Chat
+
+Four differences worth naming:
+
+1. **File manipulation** — directly reads/edits files on your machine, instead of copy-pasting in and out
+2. **Code execution + iteration loop** — runs, catches its own errors, fixes, retries. Can work for 15-20 min on one task.
+3. **Multi-agent** — spawns sub-agents for parallel work under a coordinating Claude
+4. **Long-term memory** via markdown — the one that really changes the game
+
+---
+
+## Long-term memory is the unlock
+
+Claude Chat forgets everything when you close the tab. Claude Code doesn't.
+
+Four markdown files turn Claude into a collaborator:
+
+- `CLAUDE.md` — **who you are** and how you work
+- `comms.md` — **async channel**, for questions too big to answer inline
+- `todo.md` — **running task list** Claude updates as you work
+- `current_state.md` — **handoff doc** for cold-starting the next session
+
+Unlike a human collaborator, this memory is **inspectable and editable**. Open the files. See what Claude remembers. Rewrite it.
+
+Memory you can audit.
+
+---
+
+## Skills, agents, MCP
+
+::: {.columns}
+
+::: {.column width="33%"}
+**Skills**
+
+Reusable slash commands.
+
+Markdown file + frontmatter.
+
+*Where 90% of the value is for researchers.*
+:::
+
+::: {.column width="33%"}
+**Agents**
+
+Sub-processes Claude spawns for parallel / context-isolated work.
+
+Mostly the built-ins are enough.
+:::
+
+::: {.column width="33%"}
+**MCP servers**
+
+External tool connectors.
+
+Email, Calendar, Tasks, Browser.
+
+*Claude as executive assistant — different job, happy to talk offline.*
+:::
+
+:::
+
+---
+
+## What a SKILL.md looks like {.scrollable}
+
+Just markdown with a YAML header. Claude reads the `description` and decides when to invoke it.
+
+```markdown
+---
+name: pipeline-audit
+description: Audit a research data-code-output-manuscript pipeline
+  for correctness and consistency. Use whenever the user wants to
+  verify their analysis pipeline, check for bugs in statistical code,
+  find hardcoded numbers in a manuscript, or ensure narrative
+  descriptions match the actual results.
+---
+
+# Research Pipeline Audit
+
+Performs a comprehensive audit of a research project to ensure the
+data → code → output → manuscript pipeline is correct, clean, and
+internally consistent.
+
+## The Four Audit Tasks
+
+Run all four in sequence. Report findings for each before moving on.
+
+### Task 1: Statistical Method Correctness
+
+Goal: verify that the code actually implements what it claims to.
+
+- Read all analysis scripts. Understand what each function does.
+- For every statistical method used, verify:
+  - The model formula is correct for the stated estimand
+  - Fixed effects, weights, and clustering are applied correctly
+  - Pre/post and treatment/control splits are defined correctly
+  ...
+```
+
+That's it. No magic.
+
+---
+
+## You build and edit skills by talking
+
+**Creating a new skill:**
+
+> *"Write me a skill called `/skim-paper` that takes a PDF URL, downloads it, and gives me a 200-word skim focused on method and results."*
+
+Claude scaffolds the `SKILL.md`. You review it. Done.
+
+**Refining an existing skill:**
+
+> *"Yesterday I used the Google Docs skill and after the third section the text went garbled. Figure out why, and if you can identify the cause, edit the skill so this doesn't happen again."*
+
+Claude diagnoses, patches, commits. No hand-editing required.
+
+---
+
+## Why talk, not type
+
+- Typing: ~40 wpm
+- Speaking: ~150 wpm
+- Thinking: somewhere in between
+
+**WisprFlow** — free, press a key, talk.
+
+The real win isn't speed — it's **specificity**. When I type I truncate. When I talk I say exactly what I want. More specific prompts → better output.
+
+---
+
+## Your CLAUDE.md — who you are to Claude {.scrollable}
+
+Global file at `~/.claude/CLAUDE.md` loads into every session. Excerpt:
+
+```markdown
+## 1. Core Profile
+
+Name: [Your name]
+Role: Postdoctoral researcher
+Fields: AI × behavioral science × marketing
+
+Core working style:
+- direct, skeptical reasoning
+- minimal fluff
+- code-first explanations
+- concrete next steps preferred
+
+If an assumption looks weak, challenge it.
+
+## CURRENT FOCUS (Last 30 Days)
+
+Top priorities (ranked):
+1. Synthetic contact paper
+2. Gallup project
+3. Agency experiment Study 2
+
+This week's definition of progress:
+> Agency Study 2 is launched and the synthetic contact
+> draft is complete.
+
+## 3.3 Coding & Technical Preferences
+
+- R (tidyverse), Python, JS/Node as needed
+- Readable over clever; iteration over abstraction
+- Use lavaan for mediation, not the mediation package
+- Cache expensive calls; save intermediate artifacts
+
+## 3.4 Writing Preferences
+
+- Concise, confident prose
+- Strong topic sentence every paragraph
+- No passive voice; avoid em-dashes
+- Always quantify — no "many" or "several"
+```
+
+The full template is in `TEMPLATE_CLAUDE.md` in the repo. Adapt it.
+
+---
+
+## Your comms.md — the async channel {.scrollable}
+
+Same workflow you already use with an advisor or coauthor — a running doc of dated entries, questions, answers, decisions. This one is with Claude.
+
+Newest entry at top. Date + time every entry.
+
+```markdown
+# comms.md
+
+## 2026-04-14 3:15pm ET — Question for Ben
+
+While scaffolding the Bradley-Terry analysis I noticed the peer
+rating data has some jokes with only 1-2 ratings. Three options:
+
+1. Drop jokes with <3 ratings (loses ~18% of data)
+2. Keep all, use BT with low-rating jokes getting wide CIs
+3. Backfill with AI ratings (would match the study design for
+   those participants but not this one)
+
+Leaning toward option 2 — feels cleanest given the data is not
+missing at random. Let me know which you want.
+
+## 2026-04-14 8:20am ET — Log Off
+
+**Session summary:** Cleaned Study 5 data, applied exclusions
+(n=23 dropped for attention check, n=11 for duration). Ran
+preregistered condition t-tests — all three DVs significant at
+p<.01. Bradley-Terry scaffolded but not yet fit.
+
+**Next session should start with:** fit BT model, render QMD,
+then start on Methods section.
+```
+
+It's just a log. But it's a log you share *with* Claude.
+
+---
+
+## The uncomfortable caveat
+
+> You are responsible for checking everything.
+
+The output is good enough now that it will be tempting not to.
+
+Resist that. Katie asked exactly this — I'll come back to it in Q&A.
+
+---
+
+# Survey Design {background-color="#1b1b1b"}
+
+Qualtrics via API — and what to do when Qualtrics isn't enough.
+
+---
+
+# Data Analysis {background-color="#1b1b1b"}
+
+Cleaning and analysis, in one literate document.
+
+---
+
+# Writing {background-color="#1b1b1b"}
+
+Methods, results, and pipeline auditing.
+
+No magic numbers.
+
+---
+
+# Q&A {background-color="#1b1b1b"}
+
+10 minutes. Then 30 min of open office hours.
+
+Lyle: your queue.
