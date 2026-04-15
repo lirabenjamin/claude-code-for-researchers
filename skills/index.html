@@ -215,76 +215,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
+<td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/archive-raw-data">archive-raw-data</a></td>
+<td>End-of-collection workflow: export Mongo → JSONL, commit to repo, archive to Zenodo with DOI, optionally drop Mongo data</td>
+<td><code>ZENODO_TOKEN</code>, <code>MONGODB_URI</code> in <code>.env</code>; <code>mongoexport</code> installed</td>
+</tr>
+<tr class="even">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/aspredicted">aspredicted</a></td>
 <td>Draft an AsPredicted pre-registration by walking through each field with you</td>
 <td>No</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/data-analysis">data-analysis</a></td>
 <td>Default workflow for cleaning, exploration, visualization</td>
 <td>No</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/gws">gws</a></td>
 <td>Interact with Google Workspace (Drive, Docs, Sheets, Gmail, Calendar) via the <code>gws</code> CLI</td>
 <td>Requires <code>gws</code> CLI installed + authed</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/latex-gdoc-roundtrip">latex-gdoc-roundtrip</a></td>
 <td>Push a LaTeX paper to a formatted Google Doc for coauthor review; pull edits back</td>
 <td>Requires <code>gws</code> CLI</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/latex-workflow">latex-workflow</a></td>
 <td>Build, commit, push a LaTeX paper; coauthors edit in Overleaf</td>
 <td>No</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/log-off">log-off</a></td>
 <td>End-of-session ritual — updates todo/comms/current_state and creates a handoff</td>
 <td><code>{WORKSPACE}</code>, <code>{PHONE}</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/notify-me">notify-me</a></td>
 <td>Send yourself an iMessage when a long task finishes</td>
 <td><code>{PHONE}</code>; macOS only</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/opportunity-hunter">opportunity-hunter</a></td>
 <td>Find and rank jobs, grants, prizes, fellowships from your profile</td>
 <td><code>{REPORTS_DIR}</code>; profile in CLAUDE.md</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/pipeline-audit">pipeline-audit</a></td>
 <td>Audit a data→code→output→manuscript pipeline for inconsistencies and magic numbers</td>
 <td>No</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/plate-check">plate-check</a></td>
 <td>Weekly review pulling from Gmail, Calendar, tasks, todo.md; generates a dashboard</td>
 <td><code>{WORKSPACE}</code>, <code>{PHONE}</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/qualtrics-survey">qualtrics-survey</a></td>
 <td>Build Qualtrics surveys via the API</td>
 <td><code>.env</code> with <code>QUALTRICS_API_TOKEN</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/quarto-version-toggle">quarto-version-toggle</a></td>
 <td>Render one Quarto HTML doc with multiple pre-rendered versions, switchable via buttons</td>
 <td>No</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/render-survey">render-survey</a></td>
 <td>Scaffold and deploy a full-stack behavioral research web app to Render</td>
 <td>Render + Mongo Atlas + <code>OPENAI_API_KEY</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/research-writing">research-writing</a></td>
 <td>Draft methods, results, or discussion sections following your conventions</td>
 <td>No</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/wbl-form-filler">wbl-form-filler</a></td>
 <td>Fill Wharton Behavioral Lab study submission forms on JotForm</td>
 <td>Wharton-specific; all defaults need replacing</td>
@@ -305,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="categories">Categories</h2>
 <p><strong>For writing papers:</strong> <code>pipeline-audit</code>, <code>research-writing</code>, <code>latex-workflow</code>, <code>latex-gdoc-roundtrip</code>, <code>quarto-version-toggle</code></p>
 <p><strong>For running studies:</strong> <code>aspredicted</code>, <code>qualtrics-survey</code>, <code>render-survey</code>, <code>wbl-form-filler</code></p>
-<p><strong>For data work:</strong> <code>data-analysis</code>, <code>pipeline-audit</code></p>
+<p><strong>For data work:</strong> <code>data-analysis</code>, <code>archive-raw-data</code>, <code>pipeline-audit</code></p>
 <p><strong>For workflow / time management:</strong> <code>plate-check</code>, <code>log-off</code>, <code>opportunity-hunter</code>, <code>notify-me</code></p>
 <p><strong>For Google Workspace integration:</strong> <code>gws</code>, <code>latex-gdoc-roundtrip</code></p>
 
