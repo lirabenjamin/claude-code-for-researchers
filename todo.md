@@ -6,6 +6,7 @@ Demo: Thu 2026-04-16 2:00pm ET. Two practice runs before.
 
 - [x] Write `CLAUDE.md`, `demo_script.md`, `slides.qmd`, this todo
 - [x] Render `slides.qmd` to confirm it works
+- [x] Add `install.sh` + README one-liner so audience can `curl ... | bash` to install skills
 - [ ] Read `demo_script.md` end-to-end out loud to check pacing
 - [ ] Review AsCollected answer in Q&A section — does it match what you actually believe?
 - [ ] Decide which study from the agency paper to use for the cleaning+analysis demo (Study 5 scenario? Study 6 experiment?)

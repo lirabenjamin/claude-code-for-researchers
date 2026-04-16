@@ -6,12 +6,13 @@ Resources from Ben Lira's one-hour Claude Code demo to the Wharton marketing dep
 
 ```
 .
+├── install.sh             # One-liner installer (see below)
 ├── CLAUDE.md              # Context for future Claude sessions in this repo (the demo prep)
 ├── TEMPLATE_CLAUDE.md     # Starter template for YOUR own global ~/.claude/CLAUDE.md
 ├── demo_script.md         # Full runbook: what was demoed, exact prompts used, Q&A answers
 ├── slides.qmd             # Quarto source for the slide deck
 ├── slides.html            # Rendered slides (open in browser)
-└── skills/                # 16 slash-command skills, installable by copy-paste
+└── skills/                # 16 slash-command skills
     ├── archive-raw-data/
     ├── aspredicted/
     ├── data-analysis/
@@ -32,15 +33,33 @@ Resources from Ben Lira's one-hour Claude Code demo to the Wharton marketing dep
 
 ## Installing the skills
 
-1. Copy any skill folder into `~/.claude/skills/`.
+**One-liner (installs all skills into `~/.claude/skills/`):**
 
-   ```bash
-   cp -r skills/pipeline-audit ~/.claude/skills/
-   ```
+```bash
+curl -fsSL https://raw.githubusercontent.com/lirabenjamin/claude-code-for-researchers/main/install.sh | bash
+```
 
-2. Restart Claude Code (or start a fresh session). The skill will appear as a slash command, e.g. `/pipeline-audit`.
+Install only specific skills:
 
-3. Read the SKILL.md first — several skills use **placeholder variables** like `{{WORKSPACE}}` or `{{PHONE}}` that you need to replace with your own paths/numbers. Grep for `{{` in each SKILL.md you install.
+```bash
+curl -fsSL https://raw.githubusercontent.com/lirabenjamin/claude-code-for-researchers/main/install.sh | bash -s -- pipeline-audit data-analysis
+```
+
+Re-install and overwrite existing:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/lirabenjamin/claude-code-for-researchers/main/install.sh | bash -s -- --force
+```
+
+The script clones the repo to a temp dir, copies skill folders to `~/.claude/skills/`, skips any that already exist (unless `--force`), and prints a list of skills that need further configuration.
+
+**Manual alternative** — clone the repo and copy what you want:
+
+```bash
+cp -r skills/pipeline-audit ~/.claude/skills/
+```
+
+After installing, **restart Claude Code** (or start a fresh session). Skills appear as slash commands, e.g. `/pipeline-audit`. Read the SKILL.md first — several skills use **placeholder variables** like `{{WORKSPACE}}` or `{{PHONE}}` that you need to replace. `grep -l '{{' ~/.claude/skills/*/SKILL.md` will find them.
 
 ## Skills that need configuration before first use
 
