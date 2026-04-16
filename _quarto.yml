@@ -22,7 +22,7 @@ website:
       - text: Home
         href: index.qmd
       - text: Slides
-        href: https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/edit
+        href: https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/present
       - text: Demo Script
         href: demo_script.md
       - text: Skills
