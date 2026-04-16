@@ -5,7 +5,6 @@ project:
     - "index.qmd"
     - "demo_script.md"
     - "TEMPLATE_CLAUDE.md"
-    - "slides.qmd"
     - "skills/index.qmd"
 
   resources:
@@ -23,7 +22,7 @@ website:
       - text: Home
         href: index.qmd
       - text: Slides
-        href: slides.qmd
+        href: https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/edit
       - text: Demo Script
         href: demo_script.md
       - text: Skills

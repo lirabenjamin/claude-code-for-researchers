@@ -3,7 +3,7 @@ title: "Claude Code for Researchers"
 subtitle: "Materials from Ben Lira's one-hour demo at Wharton, 2026-04-16"
 ---
 
-This site hosts everything from the Claude Code demo: the [slide deck](slides.qmd), the [full runbook](demo_script.md) with every prompt used, a [CLAUDE.md template](TEMPLATE_CLAUDE.md), and [15 skills](skills/index.qmd) packaged for copy-paste install.
+This site hosts everything from the Claude Code demo: the [slide deck](https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/edit), the [full runbook](demo_script.md) with every prompt used, a [CLAUDE.md template](TEMPLATE_CLAUDE.md), and [15 skills](skills/index.qmd) packaged for copy-paste install.
 
 Everything is free to fork, adapt, and re-share.
 
@@ -31,7 +31,7 @@ Some skills need placeholder variables filled in (paths, phone numbers, credenti
 
 ## Navigation
 
-- [**Slides**](slides.qmd) — the deck Ben used during the demo (reveal.js; arrow keys to advance)
+- [**Slides**](https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/edit) — the Google Slides deck Ben used during the demo
 - [**Demo script**](demo_script.md) — every prompt Ben spoke into WisprFlow, with timing, fallback plans, and pre-scripted answers to audience questions
 - [**Skills**](skills/index.qmd) — 15 slash commands you can install
 - [**CLAUDE.md template**](TEMPLATE_CLAUDE.md) — the starter file for your own global memory
