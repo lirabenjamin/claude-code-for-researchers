@@ -1,4 +1,5 @@
-me: latex-workflow
+---
+name: latex-workflow
 description: Reproducible manuscript workflow where scripts generate numbers, tables, and figures that are read into LaTeX. Tables are split so scripts output only the tabular body; LaTeX wraps it in table environments. Iteration happens by rendering and reviewing the compiled PDF.
 ---
 
