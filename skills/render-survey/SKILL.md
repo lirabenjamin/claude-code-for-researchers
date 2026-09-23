@@ -8,6 +8,17 @@ user_invocable: true
 
 You are scaffolding a **production-ready behavioral research survey** as a single-page React app with an Express API and MongoDB backend, deployed on Render. The user describes their experiment (conditions, stimuli, task, measures) and you generate the complete application.
 
+## ⚠ Pre-launch gate: run these checks before participants hit the live URL
+
+This skill builds and deploys the app. Building is fine. Before the user sends the live URL to WBL — or to any participant pool — walk through the checklist below. These failure modes have caused real launch problems before — do not skip this.
+
+- **Redirects.** Confirm the completion redirect on Render matches the recruiting platform's expected format (Prolific vs. CloudResearch Connect) and passes through the correct completion code.
+- **Screeners.** Test each screener/eligibility check end-to-end and confirm ineligible participants land on a clear disqualification screen, not a broken or blank page.
+- **Condition-specific paths.** Walk every condition path through the app and confirm each one reaches a real completion screen — no dead ends, no route that fails to advance.
+- **Placeholder text.** Search the deployed build for stale placeholder copy (sample stimuli, `TODO`, lorem ipsum, dev-only banners) and confirm it's gone from the live version.
+
+Trigger this checklist when: the user says "launch", "send to WBL", "go live", "ready to deploy to participants", or pastes a Render URL into a JotForm/WBL context.
+
 ## Architecture Overview
 
 ```
@@ -310,20 +321,32 @@ function AdminPanel() {
 }
 ```
 
-### Step 11: Initialize git, deploy, and verify
+### Step 11: Initialize git, push to GitHub, deploy via Render MCP
+
+Render pulls from a git host, so the flow is: push to GitHub → drive Render via MCP tools (no dashboard clicks needed).
 
 ```bash
 git init
 git add -A
 git commit -m "Initial survey scaffold"
 git tag v1.0.0
+gh repo create [project-name] --private --source=. --push
+git push --tags
 ```
 
-Then guide the user through:
-1. Create a MongoDB Atlas free cluster and get the connection string
-2. Create a Render account and connect the repo
-3. Set environment variables on Render (MONGODB_URI, OPENAI_API_KEY if using AI)
-4. Deploy and test with `?admin=1`
+Then deploy via the Render MCP server (`mcp__render__*` tools):
+
+1. `mcp__render__list_workspaces` → confirm the right workspace, `mcp__render__select_workspace` if needed.
+2. `mcp__render__create_web_service` — pass the GitHub repo URL, branch (`main`), `runtime: node`, `plan: free`, `buildCommand: npm install && npm run build`, `startCommand: npm start`.
+3. `mcp__render__update_environment_variables` — set `MONGODB_URI`, `NODE_ENV=production`, and `OPENAI_API_KEY` / `TURNSTILE_SECRET_KEY` if used. Pass them as a single batch.
+4. `mcp__render__list_deploys` to find the initial deploy, then poll `mcp__render__get_deploy` until `status: live`.
+5. If the build fails, `mcp__render__list_logs` to tail build/runtime logs and debug.
+
+**MongoDB Atlas is still manual** — Render doesn't host Mongo. Create a free M0 cluster at cloud.mongodb.com, create a DB user, whitelist `0.0.0.0/0`, and grab the SRV connection string before step 3.
+
+**The Render API key is configured at user scope in the MCP server.** If `mcp__render__*` tools error out, run `claude mcp list` to verify the `render` server shows `Connected`.
+
+For subsequent deploys, just `git push` (Render auto-deploys from the tracked branch). Use `mcp__render__update_web_service` to change build/start commands or branch, and `mcp__render__update_environment_variables` to rotate secrets.
 
 ## Styling Reference
 
@@ -426,3 +449,4 @@ The tag and commit hash are automatically embedded in every submission via the `
 - Tag every deployment before launching to participants.
 - The admin panel (`?admin=1`) is for researchers only — participants never see it.
 - Survey items should have versioned IDs (e.g., `outcome_capable_v2`) so that if wording changes, old and new responses are distinguishable in the data.
+- Deployment is driven through the Render MCP server (`mcp__render__*` tools) — never tell the user to click through the Render dashboard. If MCP tools aren't available in the current session, fall back to `curl` against `https://api.render.com/v1` rather than manual clicks.

@@ -1,6 +1,6 @@
 ---
 title: "Skills"
-subtitle: "15 slash commands for research work"
+subtitle: "18 slash commands for research work"
 ---
 
 Each skill is a single `SKILL.md` file. Install by copying the folder into `~/.claude/skills/` and restarting Claude Code:
@@ -32,7 +32,9 @@ Some skills need placeholder values replaced before first use — check the "Nee
 | [quarto-version-toggle](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/quarto-version-toggle) | Render one Quarto HTML doc with multiple pre-rendered versions, switchable via buttons | No |
 | [render-survey](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/render-survey) | Scaffold and deploy a full-stack behavioral research web app to Render | Render + Mongo Atlas + `OPENAI_API_KEY` |
 | [research-writing](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/research-writing) | Draft methods, results, or discussion sections following your conventions | No |
+| [semantic-pipeline](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/semantic-pipeline) | Compute word/sentence/document-level semantic diversity measures (DSI, SBERT, chamfer distinctness) on a parquet of texts | `OPENAI_API_KEY` for the document-level step; dedicated Python venv |
 | [wbl-form-filler](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/wbl-form-filler) | Fill Wharton Behavioral Lab study submission forms on JotForm | Wharton-specific; all defaults need replacing |
+| [zotero-fetch](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/zotero-fetch) | Fetch a Zotero collection's items and PDFs to a local folder so Claude can read them | `ZOTERO_API_KEY`, `ZOTERO_USER_ID` in your shell env |
 
 ---
 
@@ -44,11 +46,11 @@ Some skills need placeholder values replaced before first use — check the "Nee
 
 ## Categories
 
-**For writing papers:** `pipeline-audit`, `research-writing`, `latex-workflow`, `latex-gdoc-roundtrip`, `quarto-version-toggle`
+**For writing papers:** `pipeline-audit`, `research-writing`, `latex-workflow`, `latex-gdoc-roundtrip`, `quarto-version-toggle`, `zotero-fetch`
 
 **For running studies:** `aspredicted`, `qualtrics-survey`, `render-survey`, `wbl-form-filler`
 
-**For data work:** `data-analysis`, `archive-raw-data`, `pipeline-audit`
+**For data work:** `data-analysis`, `archive-raw-data`, `pipeline-audit`, `semantic-pipeline`
 
 **For workflow / time management:** `plate-check`, `log-off`, `opportunity-hunter`, `notify-me`
 

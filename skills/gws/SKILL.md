@@ -63,10 +63,15 @@ gws drive files export --params '{"fileId": "FILE_ID", "mimeType": "application/
 ### Docs — Read & Write
 ```bash
 # Get full document content (JSON structure with paragraphs, tables, etc.)
-gws docs documents get --params '{"documentId": "DOC_ID"}'
+# IMPORTANT: New docs use tab-based structure. Always include includeTabsContent.
+gws docs documents get --params '{"documentId": "DOC_ID", "includeTabsContent": true}'
+# With tabs, body lives at: doc["tabs"][0]["documentTab"]["body"]
+# Without tabs (legacy), body lives at: doc["body"]
+# Always check for "tabs" key first, fall back to "body".
 
 # Append text to a document (helper command)
-gws docs +write --params '{"documentId": "DOC_ID"}' --json '{"text": "Hello world"}'
+# NOTE: +write uses --document and --text flags, NOT --params/--json
+gws docs +write --document "DOC_ID" --text "Hello world"
 
 # Batch update a document (insertText, deleteContent, etc.)
 gws docs documents batchUpdate --params '{"documentId": "DOC_ID"}' --json '{
@@ -126,6 +131,32 @@ gws <service> <resource> --help
 gws schema <service>.<resource>.<method>
 ```
 
+## Google Docs — Newline Semantics (DON'T DOUBLE-SPACE)
+
+Google Docs `insertText` treats **every `\n` as a paragraph break**, and the doc's default paragraph style already adds space before/after each paragraph. Writing `\n\n` between sections (the natural impulse from markdown/plaintext) renders as **double-spaced gaps** — an extra empty paragraph plus the default paragraph spacing.
+
+**Rules:**
+
+- **Use single `\n` between paragraphs.** Let the doc's paragraph spacing handle the gap.
+- **Never insert `"\n\n"`** unless you specifically want a blank-line paragraph in the output (rare).
+- **End the document body with a single trailing `\n`**, not two.
+- If you want visual section breaks, use `updateParagraphStyle` with `spaceAbove`/`spaceBelow` or `namedStyleType: HEADING_1/2/3` instead of blank lines.
+- For tables-as-text (tab-separated rows), each row is one `\n`-terminated paragraph. Don't put blank lines between rows.
+
+Example — wrong:
+
+```python
+text = "Section 1\n\nbody line\n\nSection 2\n\nbody line\n"   # double-spaced
+```
+
+Right:
+
+```python
+text = "Section 1\nbody line\nSection 2\nbody line\n"          # single-spaced
+```
+
+If you've already pasted double-spaced content into a doc, the fix is a `replaceAllText` pass that collapses `\n\n` → `\n`, or a `deleteContentRange` over every empty paragraph (its range is one `\n` long).
+
 ## Google Docs batchUpdate — Index Safety
 
 When inserting content into a Google Doc (especially tables), character indices shift after every mutation. Stale indices cause text to land in the wrong location, corrupting paragraphs.
@@ -136,9 +167,39 @@ When inserting content into a Google Doc (especially tables), character indices 
 3. **After inserting a table structure, re-fetch the doc** to get the actual cell indices before populating cells. The cell indices returned by `insertTable` are not reliable for subsequent inserts in the same batch.
 4. **Skip empty cells** when applying `updateTextStyle` — a range where `endIndex - startIndex <= 1` (just a newline) will error with "range should not be empty."
 5. **`updateTableCellStyle`** uses `tableRange` with `tableCellLocation.tableStartLocation` inside it — do NOT also set a top-level `tableStartLocation` (oneOf conflict).
-6. **`+write` helper** only appends plain text. For any formatting, use `batchUpdate` with `updateParagraphStyle` / `updateTextStyle`.
+6. **`+write` helper** only appends plain text. Syntax: `gws docs +write --document DOC_ID --text "..."`. For any formatting, use `batchUpdate` with `updateParagraphStyle` / `updateTextStyle`.
 7. **Large JSON payloads**: pass via Python `subprocess.run()` rather than shell `$(cat ...)` to avoid shell escaping and argument length limits.
 8. **gws stdout** prefixes output with `Using keyring backend: keyring` — skip the first line before parsing JSON.
+
+## Editing Google Docs safely (avoid concurrent-edit collisions)
+
+`batchUpdate` applies changes at **raw character indices**. If a human is editing the doc live, the indices shift mid-operation and an insert lands in the wrong place — splitting a line, gluing a heading onto existing text, or clobbering content. This happened for real on 2026-07-06. Follow these rules on every edit:
+
+1. **Prefer anchor text over absolute indices.** Read the doc, locate a UNIQUE anchor string (a heading, a distinctive sentence), then compute the insertion index from that anchor in a **fresh read taken immediately before the write**. Better still, use `replaceAllText` / a named-range approach instead of a hardcoded absolute index.
+2. **Check freshness / detect live editing.** Before writing, check the doc's `revisionId` (`documents.get`) or Drive `modifiedTime` (`drive files get`). If it was modified in the last minute or two, the user may be actively typing — pause and re-read, or ask, rather than writing blind.
+3. **Read → verify → abort on drift.** After computing indices from a read, re-read immediately before writing and confirm the anchor is still where expected. If the doc changed between read and write, **ABORT the write** rather than apply a possibly-misplaced edit; then recompute from the fresh read.
+4. **After any write, re-read and verify** the inserted content is present, correctly placed, and that no existing content was displaced or deleted.
+
+**Practical note:** when possible, make edits when the user is not actively typing in the doc.
+
+## Google Docs — Tab-Based Document Structure (CRITICAL)
+
+New Google Docs use a **tab-based** document structure. This affects how you read content.
+
+- When calling `documents.get`, **always pass `"includeTabsContent": true`** in params.
+- With tabs enabled, the response has a `tabs` array. Content lives at:
+  `doc["tabs"][0]["documentTab"]["body"]["content"]`
+- The legacy `doc["body"]` key may exist but will be **empty** for tab-based docs.
+- Always use this pattern to get the body:
+
+```python
+def get_body(doc):
+    if "tabs" in doc:
+        return doc["tabs"][0]["documentTab"]["body"]
+    return doc["body"]
+```
+
+If you skip `includeTabsContent`, you'll get an empty body and all placeholder searches will fail silently.
 
 ## Troubleshooting
 
