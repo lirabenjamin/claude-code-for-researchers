@@ -1,3 +1,4 @@
+---
 name: latex-gdoc-roundtrip
 description: Roundtrip a LaTeX manuscript to Google Docs for coauthor feedback and back. Reads the compiled PDF, writes clean text + figures + tables into a Google Doc via `gws`, and can pull comments/edits back into the LaTeX source.
 ---
@@ -53,7 +54,17 @@ Save the document ID.
 
 ### Step 4: Write the text
 
-Use `gws docs +write` to insert text. Key rules:
+Use `gws docs +write` to insert all text in a **single call**. The `+write` helper uses its own CLI flags — NOT `--params`/`--json`:
+
+```bash
+# CORRECT syntax:
+gws docs +write --document "DOC_ID" --text "Full text here"
+
+# WRONG — will silently fail:
+# gws docs +write --params '{"documentId": "..."}' --json '{"text": "..."}'
+```
+
+Key rules:
 
 1. **One `\n` per paragraph** — never double `\n` (that creates blank lines Google Docs doesn't need)
 2. **Resolve all LaTeX macros** — replace `\N{}`, `\WarmthTimeB{}` etc. with actual numbers from the PDF
@@ -71,14 +82,25 @@ Use `gws docs +write` to insert text. Key rules:
 8. **Abstract**: Write as its own paragraph, separate from the introduction. Start with "Abstract. " (bold the label).
 9. **Authors**: Include author names centered below the title/subtitle.
 
-Write the full text using `gws docs +write --document DOC_ID --text "..."`. For large manuscripts, write in chunks (one section per call) — the `+write` helper appends automatically.
+Write the full text as a single concatenated string. For very long manuscripts, write in chunks (one section per call) — `+write` appends automatically.
 
 ### Step 5: Apply formatting via batchUpdate
 
-After all text is inserted, get the doc structure to find character positions:
+After all text is inserted, get the doc structure to find character positions.
+
+**CRITICAL: Use `includeTabsContent` or you'll get an empty body for tab-based docs:**
 
 ```bash
-gws docs documents get --params '{"documentId": "DOC_ID"}'
+gws docs documents get --params '{"documentId": "DOC_ID", "includeTabsContent": true}'
+```
+
+Parse the body with this pattern (handles both tab-based and legacy docs):
+
+```python
+def get_body(doc):
+    if "tabs" in doc:
+        return doc["tabs"][0]["documentTab"]["body"]
+    return doc["body"]
 ```
 
 Then apply formatting in one batchUpdate call:
@@ -116,12 +138,20 @@ After insertion, clean up the temp images from Drive.
 
 ### Step 7: Insert tables
 
+Process tables in **reverse document order** (last table first) to avoid index shifting between tables.
+
 For each table placeholder:
-1. Delete the placeholder paragraph
-2. Insert a caption paragraph (bold the "Table N." prefix)
-3. Insert a table structure: `{"insertTable": {"rows": N, "columns": M, "location": {"index": X}}}`
-4. Populate cells by finding each cell's startIndex and inserting text
-5. Format: bold the header row only, not the entire table. Row labels (first column) can be bold for readability.
+1. Delete the placeholder paragraph → re-read doc
+2. Insert caption text at the same index → re-read doc
+3. Bold the "Table N." prefix in the caption
+4. Find the caption paragraph's `endIndex`, insert table there: `{"insertTable": {"rows": N, "columns": M, "location": {"index": endIndex}}}` → re-read doc
+5. Find the inserted `"table"` element in body content (match by `startIndex >= caption position`)
+6. Populate cells: collect all `(cellStartIndex, text)` pairs, sort by index **descending**, batch into one `batchUpdate` call
+7. Re-read doc one more time, then bold header row and italic group-header rows
+
+**Each structural change (delete, insert text, insert table) requires a fresh `documents.get` before the next step.** The biggest time sink is skipping re-reads and getting stale indices. Budget 4-5 `get` calls per table — this is unavoidable.
+
+**Batch cell population in one call.** Sorting inserts by descending index lets you populate all cells in a single `batchUpdate` without index shifting.
 
 ### Step 8: Set sharing permissions
 
@@ -173,6 +203,23 @@ make paper  # or whatever the project's build command is
 ```
 
 Open the PDF and verify the changes rendered correctly.
+
+---
+
+## Implementation Strategy: Write One Python Script
+
+**Do not run gws commands one-by-one from bash.** Each call requires parsing, debugging, and re-reading state. Instead, write a single Python script (`/tmp/write_gdoc.py`) that does everything:
+
+1. Calls `gws docs +write --document DOC_ID --text "..."` to insert all text
+2. Calls `gws docs documents get` (with `includeTabsContent`) to read indices
+3. Calls `gws docs documents batchUpdate` for all formatting in one shot
+4. Uploads figures, finds placeholders, replaces them (reverse order)
+5. Inserts tables (reverse order), each with its own get→delete→insert→populate cycle
+6. Sets sharing permissions
+
+Use `subprocess.run()` for all calls. Parse JSON output by skipping the `Using keyring backend: keyring` first line. Add `time.sleep(0.5)` between structural mutations (the API needs a moment to propagate).
+
+This approach runs the whole push in one `python3 /tmp/write_gdoc.py` invocation instead of 20+ separate shell round-trips.
 
 ---
 

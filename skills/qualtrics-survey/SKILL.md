@@ -7,6 +7,17 @@ description: Build a Qualtrics survey from specs using the qualtrics_sdk Python 
 
 You are building a Qualtrics survey using the `qualtrics_sdk` Python package. The user will describe what they want, and you will write and execute a Python script that creates the survey via the Qualtrics API.
 
+## ⚠ Pre-launch gate: run these checks before this survey is sent to participants
+
+Creating a Qualtrics survey is fine. Before the user activates it for a real participant pool — or pastes its anonymous URL into a JotForm — walk through the checklist below. These failure modes have caused real launch problems before — do not skip this.
+
+- **Platform redirects.** Confirm the end-of-survey redirect URL matches the actual recruiting platform (Prolific vs. CloudResearch Connect use different completion-code formats) and that the embedded data field carries the platform ID through to the redirect.
+- **Screeners.** Re-run each screener question logic path and confirm failing participants are actually routed to a disqualification end-of-survey message, not left to continue.
+- **Condition-specific branches.** Walk every branch/block in the flow and confirm each one terminates at an end-of-survey element — no dead ends, no branch that silently falls through to the next block.
+- **Placeholder text.** Search the survey for leftover placeholder copy (`Lorem ipsum`, `TODO`, `[condition]`, sample stimuli) and confirm it's been replaced with the real content.
+
+Trigger this checklist when: the user says "launch", "activate", "send to WBL", "go live", "ready to share with participants", "fill the JotForm", or pastes a Qualtrics anonymous link in a launch context.
+
 ## Step 0 — Precondition checks (MANDATORY, before writing any script)
 
 Run these three checks in order. Do not skip. Do not defer. If any fails, stop and report the failure to the user — do not proceed to script generation.
@@ -90,7 +101,7 @@ All question methods accept optional `block_id` (for new questions) and `questio
   - Selectors: `"SAVR"` (radio), `"SAHR"` (horizontal), `"DL"` (dropdown), `"MAVR"` (checkboxes), `"MAHR"` (horizontal checkboxes)
 - **Text entry:** `api.create_text_entry_question(survey_id, question_text, text_type="SL", block_id=None)`
   - Types: `"SL"` (single line), `"ML"` (essay/multi-line), `"Form"` (form field)
-- **Matrix/Likert:** `api.create_matrix_question(survey_id, question_text, statements: list, scale_points: list, block_id=None)`
+- **Matrix/Likert:** **Do NOT use.** Never call `api.create_matrix_question(...)`. For multi-item Likert batteries, create one `create_multiple_choice_question(..., selector="SAHR")` per item (a horizontal radio row with the same scale points) and add a `create_descriptive_text()` at the top of the block for the shared stem. This gives better mobile UX, per-item page-break flexibility, and cleaner exports than a matrix. Applies to every survey unless the user explicitly overrides.
 - **Slider:** `api.create_slider_question(survey_id, question_text, min_value=0, max_value=100, left_label="", right_label="", block_id=None)`
 - **Rank order:** `api.create_rank_order_question(survey_id, question_text, items: list, block_id=None)`
 - **NPS (0-10 scale):** `api.create_nps_question(survey_id, question_text=None, left_label="Not at all likely", right_label="Extremely likely", data_export_tag=None, block_id=None)`
@@ -189,6 +200,7 @@ api.create_multiple_choice_question(survey_id, f"{img}<br>What is this?", ["A", 
 
 ## Important Notes
 
+- **Never use matrix questions.** Do not call `api.create_matrix_question(...)` in any survey. For a Likert battery, emit one `create_multiple_choice_question(..., selector="SAHR")` per statement (horizontal radio) with the shared scale points, and put the shared stem in a `create_descriptive_text()` at the top of the block. Applies to every survey unless the user explicitly overrides.
 - **All questions are required by default** unless the user says otherwise. Always add ForceResponse validation after creating each question (except descriptive text).
 - Always create blocks first, then add questions to blocks. This keeps the survey organized.
 - Add page breaks before questions that have display logic from a different page group.

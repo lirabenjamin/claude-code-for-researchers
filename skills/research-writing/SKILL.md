@@ -1,3 +1,8 @@
+---
+name: research-writing
+description: Rules and a checklist for writing clear, concrete, reader-first scientific prose (active voice, strong topic sentences, short sentences, concision, jargon control, narrative structure). Use this skill when drafting or revising research writing such as papers, abstracts, or manuscript sections.
+---
+
 SKILL — Research Writing
 
 ## Purpose

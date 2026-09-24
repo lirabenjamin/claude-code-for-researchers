@@ -17,6 +17,20 @@ Run all four in sequence. Report findings for each before moving to the next.
 
 Goal: verify that the code actually implements what it claims to implement.
 
+#### 1a. Data integrity (precondition — run before anything else)
+
+- **Duplicate participants.** Check that the unit-of-observation column (PROLIFIC_PID, participant_id, session_id, etc.) has no repeated values in any analytic frame. People retake surveys, panels duplicate-deliver, joins fan out — any of these silently inflate N and bias estimates because re-takers are no longer randomly assigned.
+  - Look for `n_distinct(pid) == nrow(df)` checks or equivalent assertions.
+  - If absent, run `df %>% count(pid) %>% filter(n > 1)` yourself.
+  - Verify the dedup rule (typically: keep the FIRST attempt by RecordedDate / created_at — treatment is randomized at first contact, so re-takes are contaminated by exposure to the prior run). If the script keeps the LAST attempt or arbitrary attempt, flag it.
+- **Joins fanning out.** After every left/inner join, verify nrow didn't grow unexpectedly.
+- **Filter ordering.** Check that exclusions are applied to the right frame at the right time (e.g., bot-check exclusions should join the bot-check file before the analytic glm, not after).
+- **Missing-value handling.** Verify `NA` participants aren't accidentally swept into a category by `==` (which returns `NA`, not `FALSE`) — use `!is.na(x) & x == "Y"` patterns.
+
+For every analytic data frame: assert `nrow == n_distinct(pid)` and report any failure.
+
+#### 1b. Statistical methods
+
 - Read all analysis scripts. Understand what each function does.
 - For every statistical method used (DiD, TWFE, SDiD, regression, mixed models, meta-analysis, etc.), verify:
   - The model formula is correct for the stated estimand
@@ -29,7 +43,7 @@ Goal: verify that the code actually implements what it claims to implement.
 - Check for off-by-one errors in indexing, period definitions, or subsetting
 - Check that transformations (standardization, log, etc.) are applied consistently across train/test or pre/post splits
 
-Report: list of confirmed-correct methods, and any bugs or discrepancies found with file + line number.
+Report: list of confirmed-correct methods, and any bugs or discrepancies found with file + line number. Always include a data-integrity verdict at the top (unique-PID assertion passed/failed for each analytic frame).
 
 ---
 
