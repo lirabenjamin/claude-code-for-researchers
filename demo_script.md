@@ -1,4 +1,12 @@
-# Claude Code Demo — Runbook
+---
+title: "Claude Code Demo — Runbook"
+search: false
+format:
+  html:
+    include-in-header:
+      - text: |
+          <meta name="robots" content="noindex, nofollow, noarchive">
+---
 
 Thu 2026-04-16, 2:00–3:00pm ET. Keep this file open on a second screen during practice runs.
 

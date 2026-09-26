@@ -1,0 +1,5 @@
+Sitemap: https://lirabenjamin.github.io/claude-code-for-researchers/sitemap.xml
+
+User-agent: *
+Disallow: /claude-code-for-researchers/demo_script.html
+Disallow: /demo_script.html
