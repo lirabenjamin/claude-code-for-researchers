@@ -1,5 +1,5 @@
 ---
-title: "Claude Code Demo — Runbook"
+title: "Claude Code Walkthrough — Runbook"
 search: false
 format:
   html:
@@ -8,9 +8,9 @@ format:
           <meta name="robots" content="noindex, nofollow, noarchive">
 ---
 
-Thu 2026-04-16, 2:00–3:00pm ET. Keep this file open on a second screen during practice runs.
+A 60-minute live walkthrough. Keep this file open on a second screen during practice runs.
 
-Time budget (58 min after Angela's 1-min intro):
+Time budget (58 minutes after a 1-minute host intro):
 - Preliminaries (10)  — 1:00–11:00
 - Survey Design (10)  — 11:00–21:00
 - Data Analysis (10)  — 21:00–31:00
@@ -19,12 +19,12 @@ Time budget (58 min after Angela's 1-min intro):
 
 ---
 
-## Pre-flight checklist (do in this order, last 15 min before demo)
+## Pre-flight checklist (do in this order, last 15 minutes before you start)
 
 - [ ] WisprFlow running + tested
 - [ ] Zoom: screen-share permissions, "optimize for video" OFF, recording ON
 - [ ] Two terminal windows open, both in `01 research/ai_agency/`, zoom level ~140%
-- [ ] Browser tabs pre-loaded (not logged out): Qualtrics, Render dashboard, Overleaf for agency paper, AsPredicted page (for Katie Q), the shared Google Doc, **this tutorial repo on GitHub** (you'll show it in Survey section)
+- [ ] Browser tabs pre-loaded (not logged out): Qualtrics, Render dashboard, Overleaf for agency paper, AsPredicted page (for the data-provenance question), the shared Google Doc, **this tutorial repo on GitHub** (you'll show it in the Survey section)
 - [ ] `slides.html` open in a third tab, full-screen tested
 - [ ] Silence Slack, iMessage, Gmail notifications
 - [ ] Clear `~/Downloads` clutter (you will screen-share)
@@ -32,13 +32,13 @@ Time budget (58 min after Angela's 1-min intro):
 - [ ] Double-check `~/.claude/CLAUDE.md` doesn't reveal anything private before scrolling it on-screen
 - [ ] Water + backup mic + phone on Do Not Disturb
 
-**Cut list if running long** (in order): `/latex-workflow` demo → second iteration of the joke survey → Bradley-Terry walkthrough depth → the research-writing detailed output. Never cut `/pipeline-audit` — it is the answer to Katie Q2. Never cut the Google Docs caveat — it's the writing-section punchline.
+**Cut list if running long** (in order): `/latex-workflow` demo → second iteration of the joke survey → Bradley-Terry walkthrough depth → the research-writing detailed output. Never cut `/pipeline-audit` — it answers the hallucination question. Never cut the Google Docs caveat — it's the writing-section punchline.
 
 ---
 
-## Angela intro — 0:00–1:00
+## Host intro — 0:00–1:00
 
-Mute yourself. Angela gives the 1-min intro. While she talks:
+Mute yourself. The host gives the 1-minute intro. While they talk:
 - Verify screen share is on the slides
 - Pull up terminal #1 ready for prompts
 
@@ -80,9 +80,9 @@ Transition to slide 4 (long-term memory):
 >
 > **MCP servers** are external tool connectors. I've got MCP servers for my email, my calendar, and — the more unusual one — my task manager. I can tell Claude what's on my mind, how important each thing is, when it's due, and it blocks time on my calendar and updates my task list accordingly. That's **Claude as my executive assistant** — different job from Claude as my research assistant, which is what today is about. Happy to talk about the exec-assistant side offline.
 >
-> For the next hour, we're focused on skills."
+> For the rest of this session, we're focused on skills."
 
-### 5:30–7:30 — How skills work (slides 6–7)
+### 5:30–7:30 — Skill mechanics (slides 6–7)
 
 Slides show the actual pipeline-audit SKILL.md excerpt + the "how you create / edit" patterns. Walk through verbally, don't switch to terminal.
 
@@ -94,7 +94,7 @@ Slides show the actual pipeline-audit SKILL.md excerpt + the "how you create / e
 >
 > **Two — you refine skills the same way.** Yesterday I was using my Google Docs skill and noticed that after a certain point in the output the text was garbled — dark, broken formatting. Instead of debugging by hand, I told Claude: 'after the third section the text goes garbled. Figure out why, and edit the skill so this doesn't happen again.' It diagnosed it and patched the skill. That's the workflow.
 >
-> We have 15 skills in the repo — `/plate-check`, `/aspredicted`, `/pipeline-audit`, `/research-writing`, `/log-off`, and more. You build your own the exact same way — by asking."
+> 18 skills ship in this repo — `/plate-check`, `/aspredicted`, `/pipeline-audit`, `/research-writing`, `/log-off`, and more. You build your own the exact same way — by asking."
 
 *No live skill creation. Keep moving.*
 
@@ -114,7 +114,7 @@ Slides show terminal-styled excerpts of a real `CLAUDE.md` and `comms.md`. Walk 
 >
 > **`comms.md` — the async channel.** When Claude has a question too big to answer inline, it writes here with a date. I answer when I have time. The excerpt on the slide is a real example from yesterday — Claude asking me how to handle low-rating jokes in the Bradley-Terry model. I answered later in the same file.
 >
-> *Analogy that will probably land:* I already keep a running meeting doc with Angela — questions I want to raise, things I've decided, things she's said. Most of you do the same with your advisor or a coauthor. **`comms.md` is that doc, with Claude.** Same workflow, same purpose, same etiquette — dated entries, newest at top, answer when you have time. Nothing new to learn; just a new collaborator to apply it to.
+> *Analogy that usually lands:* I already keep a running meeting doc with my advisor — open questions, decisions taken, her answers. Most of you do the same with an advisor or a coauthor. **`comms.md` is that doc, with Claude.** Same workflow, same purpose, same etiquette — dated entries, newest at top, answer when you have time. Nothing new to learn; just a new collaborator to apply it to.
 >
 > **`current_state.md`** — one or two paragraphs on exactly where the project is. What we're working on, what's blocking, what's next. New session starts — Claude reads this — we pick up without re-explaining.
 >
@@ -124,7 +124,7 @@ Slides show terminal-styled excerpts of a real `CLAUDE.md` and `comms.md`. Walk 
 
 ### 10:30–11:00 — The caveat (slide 11)
 
-> "Before we demo: you are responsible for checking everything. The output is good enough now that it will be tempting not to. Resist that. I'll come back to this in Q&A because Katie asked exactly this question."
+> "Before we build anything: you are responsible for checking everything. The output is good enough now that it will be tempting not to. Resist that. I'll come back to this in Q&A, because this is the question that comes up every time."
 
 Transition slide to Survey Design.
 
@@ -136,7 +136,7 @@ Transition slide to Survey Design.
 
 Open the tutorial GitHub repo in a browser tab (pin this for now — you'll come back to it).
 
-> "Quick note before we build. Every skill I use today is in this repo — link in the chat from Lyle in a second. You can clone it, copy-paste any of the 15 skills into `~/.claude/skills/`, and they work immediately. A few of them need you to replace a placeholder like `{{WORKSPACE}}` or a phone number — the README tells you which. That's how you get started without waiting."
+> "Quick note before we build. Every skill in this walkthrough lives in one public repo — link in the chat in a second. You can clone it, copy-paste any of the 18 skills into `~/.claude/skills/`, and they work immediately. A few of them need you to replace a placeholder like `{{WORKSPACE}}` or a phone number — the README tells you which. That's how you get started without waiting."
 
 ### 11:45–15:30 — Qualtrics: build the joke task (3:45 min)
 
@@ -151,7 +151,7 @@ Prompt (via WisprFlow, plan mode):
 
 **When the plan + items appear: read them on-stream.** This is the check-your-work moment:
 
-> "This is the verification step Katie asked about. I'm reading every item before any code runs. My global CLAUDE.md enforces this for anything that codes or rates text — you don't let Claude ship until you've read what it's going to build."
+> "This is the verification step. I'm reading every item before any code runs. My global CLAUDE.md enforces this for anything that codes or rates text — you don't let Claude ship until you've read what it's going to build."
 
 Approve the plan. Let it generate. Tab to Qualtrics, refresh, show the survey exists.
 
@@ -185,13 +185,13 @@ Prompt:
 
 Talking point while it builds:
 
-> "Now — the reproducibility benefit, which is directly Katie's first question. The git commit hash gets saved with every single participant's data row. That means my dataset is tied to the exact version of the materials and code that produced it. **Tamper-evident**: if anyone changes a single byte of the materials or code, the commit hash changes, and the link breaks. You can roll back to any commit and see exactly what participants saw. Fully reproducible with zero extra effort. You cannot do this in Qualtrics."
+> "Now — the reproducibility benefit, which answers the data-provenance question directly. The git commit hash gets saved with every single participant's data row. That means my dataset is tied to the exact version of the materials and code that produced it. **Tamper-evident**: if anyone changes a single byte of the materials or code, the commit hash changes, and the link breaks. You can roll back to any commit and see exactly what participants saw. Fully reproducible with zero extra effort. You cannot do this in Qualtrics."
 
 ### 20:30–21:00 — Transition (30 sec)
 
 > "Okay — I've collected data. Let's clean it and analyze it, live."
 
-Name-drop: "`/wbl-form-filler` fills Wharton Behavioral Lab submission forms, and there's a Chrome skill that can post HITs to Prolific — both save real hours, both are in the repo. Moving on."
+Name-drop: "`/wbl-form-filler` fills my behavioral lab's study submission forms, and there's a Chrome skill that can post HITs to Prolific — both save real hours, both are in the repo. Moving on."
 
 ---
 
@@ -243,12 +243,12 @@ Narrate:
 
 ### 32:30–35:30 — `/pipeline-audit` — KEY DEMO (3 min)
 
-> "And this is the tool that catches it when you mess up. This is the one I'd tell everyone in this audience to install today."
+> "And this is the tool that catches it when you mess up. This is the one to install first."
 
 Prompt:
 > "/pipeline-audit"
 
-> "It scans my code, my manuscript, and the outputs, and checks for internal consistency. Hardcoded numbers. Narrative claims that don't match the results. Stats reported wrong. Figure captions that contradict the figure. It's my direct answer to Katie's hallucination question."
+> "It scans my code, my manuscript, and the outputs, and checks for internal consistency. Hardcoded numbers. Narrative claims that don't match the results. Stats reported wrong. Figure captions that contradict the figure. It is the direct answer to the hallucination question."
 
 When it flags anything, read it out loud on-stream. If it flags nothing: "A clean audit means the paper is internally consistent right now. Worth running again after any change."
 
@@ -286,9 +286,9 @@ Transition to Q&A.
 
 ## Q&A — 41:00–51:00
 
-Lyle has been collecting questions in chat. Take his queue.
+The moderator collects questions in chat. Take that queue.
 
-### Katie Q1 — "As-Collected" and validating data as collected, not fabricated
+### Q1 — "As-Collected" and validating data as collected, not fabricated
 
 **Short answer to deliver:**
 
@@ -298,7 +298,7 @@ Lyle has been collecting questions in chat. Take his queue.
 >
 > Full provenance claim: 'Pool = Prolific; raw data = timestamped Mongo dump posted at URL X; data ID = git SHA abc123, which uniquely identifies the exact materials and code that generated this data.' That's as-collected, not fabricated."
 
-### Katie Q2 — Checks against Claude hallucinations in analysis
+### Q2 — Checks against Claude hallucinations in analysis
 
 **Short answer to deliver:**
 
@@ -310,14 +310,14 @@ Lyle has been collecting questions in chat. Take his queue.
 >
 > **The opinion:** I think well-prompted Claude code is, on average, cleaner and less bug-prone than what I'd write by hand. Humans forget to apply exclusions consistently. Humans hardcode magic numbers. Humans write `rowwise` when they meant `groupwise`. Claude does these things less often than I do, provided I've told it clearly what I want. The check-your-work discipline is the same you'd apply to an RA's code — just faster, cheaper, more iterable."
 
-### 47:00–50:00 — Open floor / Lyle's queue
+### 47:00–50:00 — Open floor / moderator's queue
 
-If no questions in chat, ask via Lyle:
+If no questions in chat, ask the room:
 > "What's one research task you'd want to see done this way? Drop it in chat — I'll try one live if we have time, otherwise bring it to office hours after."
 
 ### 50:00–51:00 — Off-ramp
 
-> "Thanks for staying muted. Angela, Lyle — thank you. Sticking around for 30 min on this Zoom for one-on-one setup help. Recording and skills repo in the shared doc."
+> "Thanks for staying muted, and thanks to the hosts. Sticking around for 30 minutes for one-on-one setup help. Recording and skills repo in the shared doc."
 
 ---
 
@@ -327,20 +327,20 @@ If no questions in chat, ask via Lyle:
 |---|---|
 | Qualtrics API 401s | Switch to showing the last survey you built on qualtrics.com; verbally describe what you would have asked for. |
 | `qualtrics_sdk` package install fails | Show the `/qualtrics-survey` SKILL.md directly; explain the package is on GitHub and recovery is a 5-line fix. |
-| Render deployment fails | Read the `/render-survey` SKILL.md + show `agency6-experiment/` structure; skip the live build. |
-| QMD render fails mid-demo | Show the `.qmd` file itself; say "in practice, I'd step through chunk by chunk." |
+| Render deployment fails | Read the `/render-survey` SKILL.md and show an existing app's structure; skip the live build. |
+| QMD render fails mid-session | Show the `.qmd` file itself; say "in practice, I'd step through chunk by chunk." |
 | Bradley-Terry package missing | Fall back to a simpler "mean rating per condition" analysis. Acknowledge: "the full BT analysis would take this one extra step." |
 | `/pipeline-audit` finds nothing to flag | "Clean audit means the paper is currently consistent — here's a screenshot from when it caught a real bug." Have a screenshot ready. |
-| `/latex-gdoc-roundtrip` auth fails | Skip the demo, deliver the Google Docs caveat verbally. That caveat is the punchline, not the live demo. |
+| `/latex-gdoc-roundtrip` auth fails | Skip the live step and deliver the Google Docs caveat verbally. The caveat carries that section; the live step is a bonus. |
 | Claude Code hangs on a long task | Ctrl-C, say "in practice I'd let it run in the background or use `/loop`." Move on. |
 | WisprFlow dies | Switch to keyboard, acknowledge, keep going. |
 | Full terminal crash | Second terminal is pre-cd'd. Switch windows. |
 
 ---
 
-## Post-demo debrief (do within 1 hour)
+## Post-session debrief (do within 1 hour)
 
 - [ ] Note what ran over-time, what went faster than planned
 - [ ] Note which prompts landed, which needed re-phrasing live
-- [ ] Save chat transcript from Zoom
-- [ ] Update this file for the potential sequel Angela mentioned
+- [ ] Save the chat transcript
+- [ ] Update this file for the next run

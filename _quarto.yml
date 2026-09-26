@@ -17,7 +17,7 @@ project:
 
 website:
   title: "Claude Code for Researchers"
-  description: "Slides, script, and 15 skills from Ben Lira's Claude Code demo at Wharton."
+  description: "Slides, a runbook, a CLAUDE.md template, and 18 installable skills for using Claude Code in research work."
   site-url: "https://lirabenjamin.github.io/claude-code-for-researchers"
   repo-url: "https://github.com/lirabenjamin/claude-code-for-researchers"
   repo-actions: [source]

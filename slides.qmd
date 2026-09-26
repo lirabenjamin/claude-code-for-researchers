@@ -1,8 +1,7 @@
 ---
 title: "Claude Code for Research"
-subtitle: "A one-hour demo"
+subtitle: "A live walkthrough"
 author: "Ben Lira"
-date: "2026-04-16"
 format:
   revealjs:
     theme: simple
@@ -17,7 +16,7 @@ format:
     css: slides.css
 ---
 
-## Today
+## Agenda
 
 1. Preliminaries — why, how, primitives
 2. Survey design — Qualtrics + custom web apps
@@ -27,7 +26,7 @@ format:
 
 Running example: a **joke-writing task** with AI assistance, agency measures, and peer ratings.
 
-Everything is live. Lyle handles chat. All materials — slides, script, skills — are on the repo linked in chat.
+Everything is live. All materials (slides, runbook, skills) are in the public repo linked in the chat.
 
 ---
 
@@ -64,7 +63,7 @@ Claude Chat forgets everything when you close the tab. Claude Code doesn't.
 
 Four markdown files turn Claude into a collaborator:
 
-- `CLAUDE.md` — **who you are** and how you work
+- `CLAUDE.md` — **who you are** and your working conventions
 - `comms.md` — **async channel**, for questions too big to answer inline
 - `todo.md` — **running task list** Claude updates as you work
 - `current_state.md` — **handoff doc** for cold-starting the next session
@@ -111,7 +110,7 @@ Email, Calendar, Tasks, Browser.
 
 ---
 
-## What a SKILL.md looks like {.scrollable}
+## Anatomy of a SKILL.md {.scrollable}
 
 Just markdown with a YAML header. Claude reads the `description` and decides when to invoke it.
 
@@ -271,13 +270,13 @@ It's just a log. But it's a log you share *with* Claude.
 
 The output is good enough now that it will be tempting not to.
 
-Resist that. Katie asked exactly this — I'll come back to it in Q&A.
+Resist that. I'll come back to it in Q&A.
 
 ---
 
 # Survey Design {background-color="#1b1b1b"}
 
-Qualtrics via API — and what to do when Qualtrics isn't enough.
+Qualtrics via API, plus the alternative for cases Qualtrics cannot cover.
 
 ---
 
@@ -297,6 +296,4 @@ No magic numbers.
 
 # Q&A {background-color="#1b1b1b"}
 
-10 minutes. Then 30 min of open office hours.
-
-Lyle: your queue.
+10 minutes of questions. Then open office hours.

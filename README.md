@@ -1,18 +1,18 @@
-# Claude Code Demo — for Researchers
+# Claude Code for Researchers
 
-Resources from Ben Lira's one-hour Claude Code demo to the Wharton marketing department (2026-04-16). Share freely.
+Slides, a runbook, a CLAUDE.md template, and 18 installable skills for using Claude Code in research work. By Ben Lira. Share freely.
 
 ## What's here
 
 ```
 .
 ├── install.sh             # One-liner installer (see below)
-├── CLAUDE.md              # Context for future Claude sessions in this repo (the demo prep)
+├── CLAUDE.md              # Context for future Claude sessions in this repo
 ├── TEMPLATE_CLAUDE.md     # Starter template for YOUR own global ~/.claude/CLAUDE.md
-├── demo_script.md         # Full runbook: what was demoed, exact prompts used, Q&A answers
+├── demo_script.md         # Full runbook: section timings, exact prompts, fallback plans, Q&A answers
 ├── slides.qmd             # Quarto source for the slide deck
 ├── slides.html            # Rendered slides (open in browser)
-└── skills/                # 16 slash-command skills
+└── skills/                # 18 slash-command skills
     ├── archive-raw-data/
     ├── aspredicted/
     ├── data-analysis/
@@ -28,7 +28,9 @@ Resources from Ben Lira's one-hour Claude Code demo to the Wharton marketing dep
     ├── quarto-version-toggle/
     ├── render-survey/
     ├── research-writing/
-    └── wbl-form-filler/
+    ├── semantic-pipeline/
+    ├── wbl-form-filler/
+    └── zotero-fetch/
 ```
 
 ## Installing the skills
@@ -53,13 +55,13 @@ curl -fsSL https://raw.githubusercontent.com/lirabenjamin/claude-code-for-resear
 
 The script clones the repo to a temp dir, copies skill folders to `~/.claude/skills/`, skips any that already exist (unless `--force`), and prints a list of skills that need further configuration.
 
-**Manual alternative** — clone the repo and copy what you want:
+**Manual alternative** — clone the repo and copy individual skill folders:
 
 ```bash
 cp -r skills/pipeline-audit ~/.claude/skills/
 ```
 
-After installing, **restart Claude Code** (or start a fresh session). Skills appear as slash commands, e.g. `/pipeline-audit`. Read the SKILL.md first — several skills use **placeholder variables** like `{{WORKSPACE}}` or `{{PHONE}}` that you need to replace. `grep -l '{{' ~/.claude/skills/*/SKILL.md` will find them.
+After installing, **restart Claude Code** (or start a fresh session). Skills appear as slash commands, e.g. `/pipeline-audit`. Read the SKILL.md first — 5 skills use **placeholder variables** like `{{WORKSPACE}}` or `{{PHONE}}` that you need to replace. `grep -l '{{' ~/.claude/skills/*/SKILL.md` will find them.
 
 ## Skills that need configuration before first use
 
@@ -73,9 +75,12 @@ After installing, **restart Claude Code** (or start a fresh session). Skills app
 | `qualtrics-survey` | Needs `QUALTRICS_API_TOKEN` and `QUALTRICS_DATA_CENTER` in a `.env` file |
 | `render-survey` | Needs Render + MongoDB Atlas accounts + `OPENAI_API_KEY` if using AI tasks |
 | `notify-me` | Uses macOS Messages + your phone number |
-| `gws` | Requires `gws` CLI installed for Google Workspace integration |
+| `gws` | Requires the `gws` CLI installed and authed for Google Workspace integration |
+| `latex-gdoc-roundtrip` | Requires the `gws` CLI |
+| `semantic-pipeline` | Needs `OPENAI_API_KEY` for the document-level step, plus a dedicated Python venv |
+| `zotero-fetch` | Needs `ZOTERO_API_KEY` and `ZOTERO_USER_ID` in your shell env |
 
-The other skills (`aspredicted`, `data-analysis`, `latex-gdoc-roundtrip`, `latex-workflow`, `pipeline-audit`, `quarto-version-toggle`, `research-writing`) work out of the box.
+The other 6 skills (`aspredicted`, `data-analysis`, `latex-workflow`, `pipeline-audit`, `quarto-version-toggle`, `research-writing`) work out of the box.
 
 ## Setting up your own CLAUDE.md
 
@@ -86,11 +91,11 @@ cp TEMPLATE_CLAUDE.md ~/.claude/CLAUDE.md
 # then open and fill in your details
 ```
 
-This is the single highest-leverage thing you can do. Once Claude knows your role, active projects, technical preferences, and failure modes, every session starts with context — you stop repeating yourself.
+No other setup step pays off as much. Once Claude knows your role, active projects, technical preferences, and failure modes, every session starts with context — you stop repeating yourself.
 
-## Demo materials
+## Walkthrough materials
 
-- `demo_script.md` — full runbook with time-budgeted sections, exact prompts, fallback plans, and scripted answers to the two audience questions (AsCollected data provenance; hallucination checks in analysis code).
+- `demo_script.md` — full runbook with time-budgeted sections, exact prompts, fallback plans, and scripted answers to the 2 questions that come up most often (AsCollected data provenance; hallucination checks in analysis code).
 - `slides.html` — 10 concept slides + 4 section-transition slides. Rendered from `slides.qmd`. To re-render after editing:
 
   ```bash
@@ -99,8 +104,8 @@ This is the single highest-leverage thing you can do. Once Claude knows your rol
 
 ## Reporting bugs / requesting features
 
-File issues on this repo or email Ben. If a skill breaks or a placeholder is missing, flag it.
+File issues on this repo. If a skill breaks or a placeholder is missing, flag it.
 
 ## License
 
-These skills are shared freely. Adapt, fork, improve, re-share. No warranty — you are responsible for checking what Claude produces. See `demo_script.md` Q&A section for Ben's specific answer on how to verify AI-generated analysis code.
+These skills are shared freely. Adapt, fork, improve, re-share. No warranty — you are responsible for checking Claude's output. The `demo_script.md` Q&A section gives a concrete procedure for verifying AI-generated analysis code.

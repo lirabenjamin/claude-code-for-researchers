@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this directory is
 
-Prep workspace for Ben Lira's one-hour live Claude Code demo at the Wharton marketing department, 2026-04-16. Audience is about 40 faculty and grad students across several top marketing programs. Lyle Ungar moderates chat; audience muted; no live Q&A until the final 10 min.
+Source and prep workspace for Ben Lira's live Claude Code walkthrough for researchers, plus the public site that hosts the materials. The material is built for reuse across talks, so the published copy is evergreen: no dates, no host institution, no named attendees.
 
-This repo is public so the audience can clone the skills and materials. Don't commit personal details here.
+This repo is public so attendees can clone the skills and materials. Don't commit personal details here.
 
 ## Running example
 
@@ -37,7 +37,7 @@ The agency paper is a good running example because Study 2 requires a custom web
 - `comms.md` — async channel between Ben and Claude for prep questions/decisions.
 - `README.md` — public-facing onboarding for people cloning this repo after the demo.
 - `TEMPLATE_CLAUDE.md` — starter template for the audience's own global `~/.claude/CLAUDE.md`.
-- `skills/` — 15 skills packaged for copy-paste install. Clean skills are verbatim from `~/.claude/skills/`. Four skills (`plate-check`, `log-off`, `opportunity-hunter`, `wbl-form-filler`) are sanitized with `{{PLACEHOLDER}}` variables for privacy since this repo is public.
+- `skills/` — 18 skills packaged for copy-paste install. Clean skills are verbatim from `~/.claude/skills/`. Five skills (`plate-check`, `log-off`, `notify-me`, `opportunity-hunter`, `wbl-form-filler`) are sanitized with `{{PLACEHOLDER}}` variables for privacy since this repo is public.
 - `CLAUDE.md` — this file.
 
 ## Critical decisions already made (don't relitigate)
@@ -50,6 +50,8 @@ The agency paper is a good running example because Study 2 requires a custom web
 - **Katie's two questions have pre-scripted answers** in `demo_script.md` §Q&A.
 
 ## Ground rules when working in this directory
+
+- **Published copy stays evergreen.** `index.qmd`, `skills/index.qmd`, `_quarto.yml`, `demo_script.md`, `README.md`, and `slides.qmd` describe the resources in the present tense. Never reintroduce a date, the host institution, an attendee name, or past-tense framing of one event.
 
 - **Do not pre-build demo artifacts in `/01 research/ai_agency/`.** The demo is fully live. Pre-running things would defeat the point and risk stale state during the demo.
 - **Mirror Ben's actual conventions when writing example prompts** — lavaan for mediation (not the mediation package), Quarto for analysis, terse prompts (no fluff), WisprFlow voice input. See global `~/.claude/CLAUDE.md` §3.3.

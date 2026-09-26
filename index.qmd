@@ -1,9 +1,9 @@
 ---
 title: "Claude Code for Researchers"
-subtitle: "Materials from Ben Lira's one-hour demo at Wharton, 2026-04-16"
+subtitle: "Slides, a runbook, and 18 installable skills for research work"
 ---
 
-This site hosts everything from the Claude Code demo: the [slide deck](https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/present), a [CLAUDE.md template](TEMPLATE_CLAUDE.md), and [18 skills](skills/index.qmd) packaged for copy-paste install.
+This site packages a working Claude Code setup for empirical research: the [slide deck](https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/present), a [CLAUDE.md template](TEMPLATE_CLAUDE.md), and [18 ready-to-install skills](skills/index.qmd).
 
 Everything is free to fork, adapt, and re-share.
 
@@ -11,12 +11,12 @@ Everything is free to fork, adapt, and re-share.
 
 ## Start here
 
-If you've never used Claude Code before:
+If you have never used Claude Code before:
 
 1. **Install Claude Code.** [Follow the official install guide](https://docs.anthropic.com/claude/docs/claude-code).
 2. **Install WisprFlow** (optional but recommended). Talking beats typing.
-3. **Copy the CLAUDE.md template.** Grab [`TEMPLATE_CLAUDE.md`](TEMPLATE_CLAUDE.md), fill in your own role/projects/preferences, and save it to `~/.claude/CLAUDE.md`. This is the single highest-leverage thing you can do.
-4. **Install one skill.** Pick one from [the skills page](skills/index.qmd) that matches something you already do manually. `/pipeline-audit` is a good first choice if you write papers; `/data-analysis` is a good first choice if you don't.
+3. **Copy the CLAUDE.md template.** Grab [`TEMPLATE_CLAUDE.md`](TEMPLATE_CLAUDE.md), fill in your own role, projects, and preferences, then save it to `~/.claude/CLAUDE.md`. No other setup step pays off as much.
+4. **Install one skill.** Pick one from [the skills page](skills/index.qmd) that matches something you already do by hand. `/pipeline-audit` is a good first choice if you write papers; `/data-analysis` is a good first choice if you don't.
 
 ## Installing a skill
 
@@ -27,21 +27,21 @@ cp -r skills/pipeline-audit ~/.claude/skills/
 
 Restart Claude Code. The skill is now callable as `/pipeline-audit`.
 
-Some skills need placeholder variables filled in (paths, phone numbers, credentials) — grep for `{{` in the SKILL.md before first use. [The skills page](skills/index.qmd) lists what each one needs.
+12 of the 18 skills need configuration before first use. Grep for `{{` in a `SKILL.md` to find placeholder variables: paths, phone numbers, credentials. The "Needs config?" column on [the skills page](skills/index.qmd) lists the API keys, CLIs, and accounts required by each skill.
 
 ## Navigation
 
-- [**Slides**](https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/present) — the Google Slides deck Ben used during the demo
-- [**Skills**](skills/index.qmd) — 18 slash commands you can install
+- [**Slides**](https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/present) — the concept deck behind the walkthrough
+- [**Skills**](skills/index.qmd) — 18 installable slash commands
 - [**CLAUDE.md template**](TEMPLATE_CLAUDE.md) — the starter file for your own global memory
 
-## About the demo
+## About the walkthrough
 
-**Audience:** Wharton marketing department + invited colleagues. Third-year psychology PhD student as the target persona.
+**Intended reader:** an empirical researcher who runs studies, analyzes data, and writes papers. The material assumes roughly the skill level of a third-year PhD student in psychology.
 
-**Running example:** a joke-writing task with AI assistance, agency measures, and peer ratings — built live in Qualtrics, then rebuilt as a self-hosted web app to show why self-hosting matters for reproducibility.
+**Running example:** a joke-writing task with AI assistance, agency measures, and peer ratings. The walkthrough builds the task first in Qualtrics, then rebuilds it as a self-hosted web app to show why self-hosting matters for reproducibility.
 
-**Format:** all live, no pre-recorded segments, one hour, Q&A in final 10 minutes.
+**Format:** roughly 50 minutes of live work across four sections (setup, survey design, data analysis, writing), plus 10 minutes of questions. Nothing is pre-recorded.
 
 ## Reporting bugs
 
@@ -49,4 +49,4 @@ File issues on [the repo](https://github.com/lirabenjamin/claude-code-for-resear
 
 ## License
 
-Materials shared freely. Adapt, fork, improve, re-share. No warranty — you are responsible for checking what Claude produces.
+Materials by Ben Lira, shared freely. Adapt, fork, improve, re-share. No warranty: you are responsible for checking Claude's output.

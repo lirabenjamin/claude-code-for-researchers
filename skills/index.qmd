@@ -1,6 +1,6 @@
 ---
 title: "Skills"
-subtitle: "18 slash commands for research work"
+subtitle: "18 installable slash commands for research work"
 ---
 
 Each skill is a single `SKILL.md` file. Install by copying the folder into `~/.claude/skills/` and restarting Claude Code:
@@ -9,13 +9,13 @@ Each skill is a single `SKILL.md` file. Install by copying the folder into `~/.c
 cp -r skills/<skill-name> ~/.claude/skills/
 ```
 
-Some skills need placeholder values replaced before first use — check the "Needs config?" column below. Skill names link to the source on GitHub, where `SKILL.md` renders cleanly.
+12 of the 18 skills need configuration before first use; the "Needs config?" column below names it for each one. Skill names link to the source on GitHub, where `SKILL.md` renders cleanly.
 
 ---
 
 ## Skills overview
 
-| Skill | What it does | Needs config? |
+| Skill | Purpose | Needs config? |
 |---|---|---|
 | [archive-raw-data](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/archive-raw-data) | End-of-collection workflow: export Mongo → JSONL, commit to repo, archive to Zenodo with DOI, optionally drop Mongo data | `ZENODO_TOKEN`, `MONGODB_URI` in `.env`; `mongoexport` installed |
 | [aspredicted](https://github.com/lirabenjamin/claude-code-for-researchers/tree/main/skills/aspredicted) | Draft an AsPredicted pre-registration by walking through each field with you | No |
