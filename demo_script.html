@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>demo_script – Claude Code for Researchers</title>
+<title>Claude Code Demo — Runbook – Claude Code for Researchers</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,16 +36,17 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./assets/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5cedc866073a63a8835c7182543745ef.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c437ad11e1d67a51fa3dde503bd277dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7c60b756f992b22463df75023c26197f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,9 +74,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&amp;display=swap">
+<meta name="robots" content="noindex, nofollow, noarchive">
 
 
-<link rel="stylesheet" href="slides.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -85,6 +89,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./assets/mascot.png" alt="" class="navbar-logo light-content">
+    <img src="./assets/mascot.png" alt="" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Claude Code for Researchers</span>
     </a>
@@ -102,10 +110,6 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/present"> 
 <span class="menu-text">Slides</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./demo_script.html" aria-current="page"> 
-<span class="menu-text">Demo Script</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./skills/index.html"> 
@@ -138,9 +142,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#claude-code-demo-runbook" id="toc-claude-code-demo-runbook" class="nav-link active" data-scroll-target="#claude-code-demo-runbook">Claude Code Demo — Runbook</a>
-  <ul class="collapse">
-  <li><a href="#pre-flight-checklist-do-in-this-order-last-15-min-before-demo" id="toc-pre-flight-checklist-do-in-this-order-last-15-min-before-demo" class="nav-link" data-scroll-target="#pre-flight-checklist-do-in-this-order-last-15-min-before-demo">Pre-flight checklist (do in this order, last 15 min before demo)</a></li>
+  <li><a href="#pre-flight-checklist-do-in-this-order-last-15-min-before-demo" id="toc-pre-flight-checklist-do-in-this-order-last-15-min-before-demo" class="nav-link active" data-scroll-target="#pre-flight-checklist-do-in-this-order-last-15-min-before-demo">Pre-flight checklist (do in this order, last 15 min before demo)</a></li>
   <li><a href="#angela-intro-000100" id="toc-angela-intro-000100" class="nav-link" data-scroll-target="#angela-intro-000100">Angela intro — 0:00–1:00</a></li>
   <li><a href="#preliminaries-1001100" id="toc-preliminaries-1001100" class="nav-link" data-scroll-target="#preliminaries-1001100">PRELIMINARIES — 1:00–11:00</a>
   <ul class="collapse">
@@ -184,18 +186,31 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#fallback-plans" id="toc-fallback-plans" class="nav-link" data-scroll-target="#fallback-plans">Fallback plans</a></li>
   <li><a href="#post-demo-debrief-do-within-1-hour" id="toc-post-demo-debrief-do-within-1-hour" class="nav-link" data-scroll-target="#post-demo-debrief-do-within-1-hour">Post-demo debrief (do within 1 hour)</a></li>
-  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/lirabenjamin/claude-code-for-researchers/blob/main/demo_script.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Claude Code Demo — Runbook</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="claude-code-demo-runbook" class="level1">
-<h1>Claude Code Demo — Runbook</h1>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>Thu 2026-04-16, 2:00–3:00pm ET. Keep this file open on a second screen during practice runs.</p>
 <p>Time budget (58 min after Angela’s 1-min intro): - Preliminaries (10) — 1:00–11:00 - Survey Design (10) — 11:00–21:00 - Data Analysis (10) — 21:00–31:00 - Writing (10) — 31:00–41:00 - Q&amp;A (10) — 41:00–51:00</p>
 <hr>
@@ -535,7 +550,6 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
