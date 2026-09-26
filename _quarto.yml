@@ -9,6 +9,7 @@ project:
 
   resources:
     - "skills/*/SKILL.md"
+    - "assets/"
 
 website:
   title: "Claude Code for Researchers"
@@ -16,8 +17,9 @@ website:
   site-url: "https://lirabenjamin.github.io/claude-code-for-researchers"
   repo-url: "https://github.com/lirabenjamin/claude-code-for-researchers"
   repo-actions: [source]
+  favicon: assets/favicon.png
   navbar:
-    background: primary
+    logo: assets/mascot.png
     left:
       - text: Home
         href: index.qmd
@@ -36,9 +38,13 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: [cosmo, theme.scss]
     toc: true
     toc-depth: 3
-    css: slides.css
     code-copy: true
     anchor-sections: true
+    include-in-header:
+      - text: |
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap">

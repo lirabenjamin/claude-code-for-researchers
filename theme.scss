@@ -1,0 +1,491 @@
+/*-- scss:defaults --*/
+
+// ---------------------------------------------------------------------------
+// "Claude Code for Researchers" — deck aesthetic.
+// Two pure grounds (black chrome / white content), one monospace family,
+// one terracotta accent, and the stadium pill as the only component shape.
+// ---------------------------------------------------------------------------
+
+$black:        #000000;
+$white:        #FFFFFF;
+$accent:       #C97960;   // primary terracotta
+$node:         #595959;   // neutral pill fill, connectors, hairlines
+$text-2:       #8C8C8C;   // body prose / secondary text
+$term-bg:      #282C35;   // Ghostty terminal ground
+$term-fg:      #D7D9DE;
+
+$mono: "Fira Code", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+// Masks for Quarto's code-copy button, so it can be tinted by `currentColor`.
+$icon-clipboard: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><path d='M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z'/><path d='M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z'/></svg>");
+$icon-check: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><path d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z'/></svg>");
+
+// Type — one family, one weight.
+$font-family-base:       $mono;
+$font-family-sans-serif: $mono;
+$font-family-monospace:  $mono;
+$headings-font-family:   $mono;
+$font-size-base:         0.95rem;
+$line-height-base:       1.65;
+$headings-font-weight:   400;
+$headings-line-height:   1.15;
+$font-weight-bold:       400;
+$font-weight-bolder:     400;
+
+// Color
+$primary:          $accent;
+$secondary:        $node;
+$body-bg:          $white;
+$body-color:       $text-2;
+$headings-color:   $black;
+$link-color:       $accent;
+$link-hover-color: $black;
+$link-decoration:  none;
+$link-hover-decoration: underline;
+$border-color:     $node;
+
+// Shape — pill or nothing. Code blocks re-flatten themselves in the rules layer.
+$border-radius:    9999px;
+$border-radius-sm: 9999px;
+$border-radius-lg: 9999px;
+$border-radius-pill: 9999px;
+$box-shadow:       none;
+$box-shadow-sm:    none;
+$box-shadow-lg:    none;
+
+// Quarto chrome
+$navbar-bg: $black;
+$navbar-fg: $white;
+$navbar-hl: $accent;
+$footer-bg: $black;
+$footer-fg: $text-2;
+$code-bg:   transparent;
+$code-color: $accent;
+$code-block-bg: $term-bg;
+$code-block-border-left: false;
+$toc-color: $node;
+$toc-active-border: $accent;
+
+// Tables — hairline rules, no zebra striping.
+$table-border-color: $node;
+$table-striped-bg:   transparent;
+$table-hover-bg:     transparent;
+$table-cell-padding-y: 0.7rem;
+$table-cell-padding-x: 0.9rem;
+
+/*-- scss:rules --*/
+
+// --- Global type ------------------------------------------------------------
+
+body {
+  font-variant-ligatures: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 400;
+  letter-spacing: 0;
+  color: $black;
+}
+
+// Generous silence above every section — the deck leaves its top third empty,
+// and it never draws a rule under a title.
+main.content {
+  h1, h2, h3, h4, h5, h6 { border-bottom: 0; padding-bottom: 0; }
+
+  h2 { font-size: 1.5rem; margin-top: 4.5rem; margin-bottom: 1.6rem; }
+  h3 { font-size: 1.15rem; margin-top: 3rem; margin-bottom: 1rem; }
+  h4 { font-size: 1rem; margin-top: 2.25rem; margin-bottom: 0.75rem; }
+
+  p, li { color: $text-2; }
+  ol, ul { padding-left: 1.4rem; }
+  li { margin-bottom: 0.45rem; }
+}
+
+// Emphasis is carried by color, never by weight.
+strong, b {
+  font-weight: 400;
+  color: $accent;
+}
+
+a { text-underline-offset: 0.25em; }
+
+hr {
+  border: 0;
+  border-top: 1px solid $node;
+  opacity: 1;
+  margin: 4rem 0;
+}
+
+blockquote {
+  border-left: 1px solid $node;
+  padding-left: 1.25rem;
+  color: $text-2;
+  font-style: italic;
+}
+
+// --- Navbar: black ground, agenda pills -------------------------------------
+
+.navbar {
+  background-color: $black !important;
+  border-bottom: 0;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+
+  .navbar-brand {
+    color: $white;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    &:hover, &:focus { color: $accent; }
+  }
+
+  .navbar-logo {
+    max-height: 22px;
+    width: auto;
+    image-rendering: pixelated;
+  }
+
+  .navbar-toggler {
+    border: 1px solid $node;
+    border-radius: 9999px;
+  }
+}
+
+// Every nav item is a stadium chip; exactly one is lit, as in the deck's agenda row.
+.navbar .navbar-nav {
+  gap: 0.5rem;
+
+  .nav-link {
+    color: $white;
+    background-color: $node;
+    border-radius: 9999px;
+    padding: 0.3rem 1.05rem;
+    line-height: 1.3;
+    white-space: nowrap;
+
+    &:hover, &:focus {
+      color: $white;
+      background-color: $accent;
+    }
+
+    &.active, &.show {
+      color: $white;
+      background-color: $accent;
+    }
+  }
+
+  // Icon-only items (GitHub) stay as bare marks, not chips.
+  .nav-link:has(> .bi) {
+    background-color: transparent;
+    padding: 0.3rem 0.5rem;
+    color: $text-2;
+
+    &:hover, &:focus { background-color: transparent; color: $accent; }
+  }
+}
+
+.quarto-navbar-tools .quarto-navigation-tool { color: $text-2; }
+.quarto-navbar-tools .quarto-navigation-tool:hover { color: $accent; }
+
+#quarto-search .aa-Autocomplete .aa-Form,
+.aa-DetachedSearchButton {
+  border-radius: 9999px;
+  border-color: $node;
+  background-color: transparent;
+  color: $text-2;
+}
+
+// --- Title block: the black hero band ---------------------------------------
+
+#title-block-header.quarto-title-block.default {
+  background-color: $black;
+  padding: 3.25rem 2.25rem 3rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+  overflow: hidden;
+
+  .quarto-title h1.title {
+    color: $white;
+    font-size: 2.35rem;
+    line-height: 1.1;
+    margin-bottom: 1.1rem;
+    max-width: 62%;
+  }
+
+  .quarto-title .subtitle,
+  p.subtitle.lead {
+    color: $text-2;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+    max-width: 62%;
+  }
+
+  .quarto-title-meta,
+  .quarto-title-meta-contents,
+  .quarto-title-meta-heading { color: $text-2; }
+
+  // The pixel mascot, the deck's only mark.
+  &::after {
+    content: "";
+    position: absolute;
+    right: 2.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 132px;
+    height: 82px;
+    background: url("assets/mascot.png") no-repeat center / contain;
+    image-rendering: pixelated;
+  }
+}
+
+// --- Code: a terminal capture, not a card -----------------------------------
+
+div.sourceCode,
+pre.sourceCode,
+pre:not(.sourceCode) {
+  border-radius: 2px;
+  border: 0;
+  box-shadow: none;
+}
+
+div.sourceCode {
+  background-color: $term-bg;
+  margin: 1.75rem 0;
+}
+
+pre.sourceCode,
+pre:not(.sourceCode) {
+  background-color: $term-bg;
+  color: $term-fg;
+  padding: 1.15rem 1.35rem;
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+pre:not(.sourceCode) { margin: 1.75rem 0; border-radius: 2px; }
+
+// Monochrome terminal, as in the deck's real Ghostty captures — only
+// comments step back. Specificity has to beat Quarto's syntax stylesheet.
+pre code,
+pre code.sourceCode {
+  color: $term-fg;
+  background: transparent;
+  font-weight: 400;
+}
+
+pre.sourceCode code span {
+  color: $term-fg;
+  background: transparent;
+  font-weight: 400;
+  font-style: normal;
+}
+
+pre.sourceCode code span.co,
+pre.sourceCode code span.cn,
+pre.sourceCode code span.do { color: $text-2; }
+
+pre.sourceCode code span.st,
+pre.sourceCode code span.ss,
+pre.sourceCode code span.vs { color: $accent; }
+
+// Inline code is already monospace everywhere, so it only needs the accent.
+code:not(.sourceCode) {
+  background-color: transparent;
+  color: $accent;
+  padding: 0;
+  font-size: 0.95em;
+
+  // Quarto only unlocks wrapping for `p code` and `td code`; a long path in a
+  // list item would otherwise push the whole page sideways on a phone.
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+a code:not(.sourceCode) { color: inherit; }
+
+// Quarto paints the copy icon as a mid-gray SVG that disappears on a dark
+// ground. Re-hang it as a mask so `currentColor` drives every state.
+.code-copy-button {
+  color: $text-2;
+  border-radius: 2px;
+
+  &:hover, &.code-copy-button-checked {
+    color: $accent;
+    background-color: transparent;
+  }
+
+  > .bi::before,
+  &:hover > .bi::before,
+  &.code-copy-button-checked > .bi::before,
+  &.code-copy-button-checked:hover > .bi::before {
+    background-image: none;
+    background-color: currentColor;
+    -webkit-mask: $icon-clipboard no-repeat center / 1rem 1rem;
+    mask: $icon-clipboard no-repeat center / 1rem 1rem;
+  }
+
+  &.code-copy-button-checked > .bi::before,
+  &.code-copy-button-checked:hover > .bi::before {
+    -webkit-mask-image: $icon-check;
+    mask-image: $icon-check;
+  }
+}
+
+// --- Tables: hairlines only -------------------------------------------------
+
+main.content table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+
+  thead th {
+    color: $black;
+    font-weight: 400;
+    text-align: left;
+    border: 0;
+    border-bottom: 1px solid $node;
+    padding: 0.7rem 0.9rem 0.7rem 0;
+    vertical-align: bottom;
+  }
+
+  tbody tr {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(140, 140, 140, 0.35);
+  }
+
+  tbody td {
+    color: $text-2;
+    border: 0;
+    padding: 0.8rem 0.9rem 0.8rem 0;
+    vertical-align: top;
+  }
+
+  // First column carries the name; links in it are already terracotta.
+  tbody td:first-child { color: $black; white-space: nowrap; }
+
+  th:last-child, td:last-child { padding-right: 0; }
+}
+
+// --- TOC / sidebar ----------------------------------------------------------
+
+#quarto-margin-sidebar {
+  .nav-link {
+    color: $text-2;
+    font-size: 0.78rem;
+    padding: 0.25rem 0;
+
+    &:hover { color: $accent; }
+    &.active { color: $accent; border-left-color: $accent; }
+  }
+
+  .toc-actions a { color: $text-2; font-size: 0.78rem; }
+  .toc-actions a:hover { color: $accent; }
+}
+
+// --- Buttons ----------------------------------------------------------------
+
+.btn, .btn-primary {
+  border-radius: 9999px;
+  font-weight: 400;
+  box-shadow: none;
+}
+
+.btn-primary {
+  background-color: $accent;
+  border-color: $accent;
+  color: $white;
+
+  &:hover, &:focus {
+    background-color: $black;
+    border-color: $black;
+    color: $white;
+  }
+}
+
+// --- Footer: the closing black slide ----------------------------------------
+
+.nav-footer {
+  background-color: $black;
+  color: $text-2;
+  border-top: 0;
+  padding: 2rem 1rem;
+  font-size: 0.8rem;
+  min-height: 0;
+  align-items: center;
+
+  a { color: $text-2; }
+  a:hover { color: $accent; }
+
+  // The closing slide's animated mascot, hammering away.
+  .nav-footer-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 96px;
+      height: 64px;
+      background: url("assets/mascot-anvil.gif") no-repeat center / contain;
+      image-rendering: pixelated;
+    }
+  }
+}
+
+// --- Narrow widths ----------------------------------------------------------
+
+@media (max-width: 991.98px) {
+  // Collapsed menu: keep the chips a wrapping row, not a stack of full-width bars.
+  .navbar .navbar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    padding: 0.75rem 0 0.25rem;
+
+    .nav-link { flex: 0 0 auto; }
+  }
+
+  .navbar .navbar-brand {
+    font-size: 0.78rem;
+    min-width: 0;
+    overflow: hidden;
+
+    .navbar-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  #title-block-header.quarto-title-block.default {
+    padding: 2.25rem 1.25rem;
+
+    .quarto-title h1.title,
+    .quarto-title .subtitle,
+    p.subtitle.lead { max-width: 100%; }
+
+    &::after {
+      position: static;
+      display: block;
+      transform: none;
+      width: 96px;
+      height: 60px;
+      margin-top: 1.75rem;
+    }
+  }
+
+  main.content table {
+    display: block;
+    overflow-x: auto;
+  }
+}
