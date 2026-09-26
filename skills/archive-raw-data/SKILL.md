@@ -218,7 +218,7 @@ curl -X PUT \
     "upload_type": "dataset",
     "title": "<Study Title> — Raw data",
     "creators": [
-      {"name": "Lastname, Firstname", "affiliation": "Wharton, UPenn", "orcid": "0000-..."}
+      {"name": "Lastname, Firstname", "affiliation": "<Your Institution>", "orcid": "0000-..."}
     ],
     "description": "Raw, pre-exclusion data from <study>. Collected <window> via <platform> using materials at <github repo> commit <sha>. Row count: <N>. See README.md in this record for full provenance and schema.",
     "access_right": "open",

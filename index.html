@@ -179,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#start-here" id="toc-start-here" class="nav-link active" data-scroll-target="#start-here">Start here</a></li>
   <li><a href="#installing-a-skill" id="toc-installing-a-skill" class="nav-link" data-scroll-target="#installing-a-skill">Installing a skill</a></li>
   <li><a href="#navigation" id="toc-navigation" class="nav-link" data-scroll-target="#navigation">Navigation</a></li>
-  <li><a href="#about-the-demo" id="toc-about-the-demo" class="nav-link" data-scroll-target="#about-the-demo">About the demo</a></li>
+  <li><a href="#about-the-walkthrough" id="toc-about-the-walkthrough" class="nav-link" data-scroll-target="#about-the-walkthrough">About the walkthrough</a></li>
   <li><a href="#reporting-bugs" id="toc-reporting-bugs" class="nav-link" data-scroll-target="#reporting-bugs">Reporting bugs</a></li>
   <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
   </ul>
@@ -191,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Claude Code for Researchers</h1>
-<p class="subtitle lead">Materials from Ben Lira’s one-hour demo at Wharton, 2026-04-16</p>
+<p class="subtitle lead">Slides, a runbook, and 18 installable skills for research work</p>
 </div>
 
 
@@ -208,17 +208,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This site hosts everything from the Claude Code demo: the <a href="https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/present">slide deck</a>, a <a href="./TEMPLATE_CLAUDE.html">CLAUDE.md template</a>, and <a href="./skills/index.html">18 skills</a> packaged for copy-paste install.</p>
+<p>This site packages a working Claude Code setup for empirical research: the <a href="https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/present">slide deck</a>, a <a href="./TEMPLATE_CLAUDE.html">CLAUDE.md template</a>, and <a href="./skills/index.html">18 ready-to-install skills</a>.</p>
 <p>Everything is free to fork, adapt, and re-share.</p>
 <hr>
 <section id="start-here" class="level2">
 <h2 class="anchored" data-anchor-id="start-here">Start here</h2>
-<p>If you’ve never used Claude Code before:</p>
+<p>If you have never used Claude Code before:</p>
 <ol type="1">
 <li><strong>Install Claude Code.</strong> <a href="https://docs.anthropic.com/claude/docs/claude-code">Follow the official install guide</a>.</li>
 <li><strong>Install WisprFlow</strong> (optional but recommended). Talking beats typing.</li>
-<li><strong>Copy the CLAUDE.md template.</strong> Grab <a href="./TEMPLATE_CLAUDE.html"><code>TEMPLATE_CLAUDE.md</code></a>, fill in your own role/projects/preferences, and save it to <code>~/.claude/CLAUDE.md</code>. This is the single highest-leverage thing you can do.</li>
-<li><strong>Install one skill.</strong> Pick one from <a href="./skills/index.html">the skills page</a> that matches something you already do manually. <code>/pipeline-audit</code> is a good first choice if you write papers; <code>/data-analysis</code> is a good first choice if you don’t.</li>
+<li><strong>Copy the CLAUDE.md template.</strong> Grab <a href="./TEMPLATE_CLAUDE.html"><code>TEMPLATE_CLAUDE.md</code></a>, fill in your own role, projects, and preferences, then save it to <code>~/.claude/CLAUDE.md</code>. No other setup step pays off as much.</li>
+<li><strong>Install one skill.</strong> Pick one from <a href="./skills/index.html">the skills page</a> that matches something you already do by hand. <code>/pipeline-audit</code> is a good first choice if you write papers; <code>/data-analysis</code> is a good first choice if you don’t.</li>
 </ol>
 </section>
 <section id="installing-a-skill" class="level2">
@@ -226,21 +226,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From this repo's root:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> skills/pipeline-audit ~/.claude/skills/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Restart Claude Code. The skill is now callable as <code>/pipeline-audit</code>.</p>
-<p>Some skills need placeholder variables filled in (paths, phone numbers, credentials) — grep for <code>{{</code> in the SKILL.md before first use. <a href="./skills/index.html">The skills page</a> lists what each one needs.</p>
+<p>12 of the 18 skills need configuration before first use. Grep for <code>{{</code> in a <code>SKILL.md</code> to find placeholder variables: paths, phone numbers, credentials. The “Needs config?” column on <a href="./skills/index.html">the skills page</a> lists the API keys, CLIs, and accounts required by each skill.</p>
 </section>
 <section id="navigation" class="level2">
 <h2 class="anchored" data-anchor-id="navigation">Navigation</h2>
 <ul>
-<li><a href="https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/present"><strong>Slides</strong></a> — the Google Slides deck Ben used during the demo</li>
-<li><a href="./skills/index.html"><strong>Skills</strong></a> — 18 slash commands you can install</li>
+<li><a href="https://docs.google.com/presentation/d/1j67OxP7MQudUdp6t-OtCPzaASTS8nBktCXalzXrvC1g/present"><strong>Slides</strong></a> — the concept deck behind the walkthrough</li>
+<li><a href="./skills/index.html"><strong>Skills</strong></a> — 18 installable slash commands</li>
 <li><a href="./TEMPLATE_CLAUDE.html"><strong>CLAUDE.md template</strong></a> — the starter file for your own global memory</li>
 </ul>
 </section>
-<section id="about-the-demo" class="level2">
-<h2 class="anchored" data-anchor-id="about-the-demo">About the demo</h2>
-<p><strong>Audience:</strong> Wharton marketing department + invited colleagues. Third-year psychology PhD student as the target persona.</p>
-<p><strong>Running example:</strong> a joke-writing task with AI assistance, agency measures, and peer ratings — built live in Qualtrics, then rebuilt as a self-hosted web app to show why self-hosting matters for reproducibility.</p>
-<p><strong>Format:</strong> all live, no pre-recorded segments, one hour, Q&amp;A in final 10 minutes.</p>
+<section id="about-the-walkthrough" class="level2">
+<h2 class="anchored" data-anchor-id="about-the-walkthrough">About the walkthrough</h2>
+<p><strong>Intended reader:</strong> an empirical researcher who runs studies, analyzes data, and writes papers. The material assumes roughly the skill level of a third-year PhD student in psychology.</p>
+<p><strong>Running example:</strong> a joke-writing task with AI assistance, agency measures, and peer ratings. The walkthrough builds the task first in Qualtrics, then rebuilds it as a self-hosted web app to show why self-hosting matters for reproducibility.</p>
+<p><strong>Format:</strong> roughly 50 minutes of live work across four sections (setup, survey design, data analysis, writing), plus 10 minutes of questions. Nothing is pre-recorded.</p>
 </section>
 <section id="reporting-bugs" class="level2">
 <h2 class="anchored" data-anchor-id="reporting-bugs">Reporting bugs</h2>
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="license" class="level2">
 <h2 class="anchored" data-anchor-id="license">License</h2>
-<p>Materials shared freely. Adapt, fork, improve, re-share. No warranty — you are responsible for checking what Claude produces.</p>
+<p>Materials by Ben Lira, shared freely. Adapt, fork, improve, re-share. No warranty: you are responsible for checking Claude’s output.</p>
 
 
 </section>

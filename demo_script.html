@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Claude Code Demo — Runbook – Claude Code for Researchers</title>
+<title>Claude Code Walkthrough — Runbook – Claude Code for Researchers</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -142,14 +142,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pre-flight-checklist-do-in-this-order-last-15-min-before-demo" id="toc-pre-flight-checklist-do-in-this-order-last-15-min-before-demo" class="nav-link active" data-scroll-target="#pre-flight-checklist-do-in-this-order-last-15-min-before-demo">Pre-flight checklist (do in this order, last 15 min before demo)</a></li>
-  <li><a href="#angela-intro-000100" id="toc-angela-intro-000100" class="nav-link" data-scroll-target="#angela-intro-000100">Angela intro — 0:00–1:00</a></li>
+  <li><a href="#pre-flight-checklist-do-in-this-order-last-15-minutes-before-you-start" id="toc-pre-flight-checklist-do-in-this-order-last-15-minutes-before-you-start" class="nav-link active" data-scroll-target="#pre-flight-checklist-do-in-this-order-last-15-minutes-before-you-start">Pre-flight checklist (do in this order, last 15 minutes before you start)</a></li>
+  <li><a href="#host-intro-000100" id="toc-host-intro-000100" class="nav-link" data-scroll-target="#host-intro-000100">Host intro — 0:00–1:00</a></li>
   <li><a href="#preliminaries-1001100" id="toc-preliminaries-1001100" class="nav-link" data-scroll-target="#preliminaries-1001100">PRELIMINARIES — 1:00–11:00</a>
   <ul class="collapse">
   <li><a href="#why-bother-slide-2" id="toc-why-bother-slide-2" class="nav-link" data-scroll-target="#why-bother-slide-2">1:00–1:45 — Why bother? (slide 2)</a></li>
   <li><a href="#claude-code-claude-chat-slides-34" id="toc-claude-code-claude-chat-slides-34" class="nav-link" data-scroll-target="#claude-code-claude-chat-slides-34">1:45–3:30 — Claude Code ≠ Claude Chat (slides 3–4)</a></li>
   <li><a href="#skills-agents-mcp-slide-5" id="toc-skills-agents-mcp-slide-5" class="nav-link" data-scroll-target="#skills-agents-mcp-slide-5">3:30–5:30 — Skills, agents, MCP (slide 5)</a></li>
-  <li><a href="#how-skills-work-slides-67" id="toc-how-skills-work-slides-67" class="nav-link" data-scroll-target="#how-skills-work-slides-67">5:30–7:30 — How skills work (slides 6–7)</a></li>
+  <li><a href="#skill-mechanics-slides-67" id="toc-skill-mechanics-slides-67" class="nav-link" data-scroll-target="#skill-mechanics-slides-67">5:30–7:30 — Skill mechanics (slides 6–7)</a></li>
   <li><a href="#why-talk-not-type-slide-8" id="toc-why-talk-not-type-slide-8" class="nav-link" data-scroll-target="#why-talk-not-type-slide-8">7:30–8:15 — Why talk, not type (slide 8)</a></li>
   <li><a href="#markdown-files-the-memory-slides-910" id="toc-markdown-files-the-memory-slides-910" class="nav-link" data-scroll-target="#markdown-files-the-memory-slides-910">8:15–10:30 — Markdown files = the memory (slides 9–10)</a></li>
   <li><a href="#the-caveat-slide-11" id="toc-the-caveat-slide-11" class="nav-link" data-scroll-target="#the-caveat-slide-11">10:30–11:00 — The caveat (slide 11)</a></li>
@@ -179,13 +179,13 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#qa-41005100" id="toc-qa-41005100" class="nav-link" data-scroll-target="#qa-41005100">Q&amp;A — 41:00–51:00</a>
   <ul class="collapse">
-  <li><a href="#katie-q1-as-collected-and-validating-data-as-collected-not-fabricated" id="toc-katie-q1-as-collected-and-validating-data-as-collected-not-fabricated" class="nav-link" data-scroll-target="#katie-q1-as-collected-and-validating-data-as-collected-not-fabricated">Katie Q1 — “As-Collected” and validating data as collected, not fabricated</a></li>
-  <li><a href="#katie-q2-checks-against-claude-hallucinations-in-analysis" id="toc-katie-q2-checks-against-claude-hallucinations-in-analysis" class="nav-link" data-scroll-target="#katie-q2-checks-against-claude-hallucinations-in-analysis">Katie Q2 — Checks against Claude hallucinations in analysis</a></li>
-  <li><a href="#open-floor-lyles-queue" id="toc-open-floor-lyles-queue" class="nav-link" data-scroll-target="#open-floor-lyles-queue">47:00–50:00 — Open floor / Lyle’s queue</a></li>
+  <li><a href="#q1-as-collected-and-validating-data-as-collected-not-fabricated" id="toc-q1-as-collected-and-validating-data-as-collected-not-fabricated" class="nav-link" data-scroll-target="#q1-as-collected-and-validating-data-as-collected-not-fabricated">Q1 — “As-Collected” and validating data as collected, not fabricated</a></li>
+  <li><a href="#q2-checks-against-claude-hallucinations-in-analysis" id="toc-q2-checks-against-claude-hallucinations-in-analysis" class="nav-link" data-scroll-target="#q2-checks-against-claude-hallucinations-in-analysis">Q2 — Checks against Claude hallucinations in analysis</a></li>
+  <li><a href="#open-floor-moderators-queue" id="toc-open-floor-moderators-queue" class="nav-link" data-scroll-target="#open-floor-moderators-queue">47:00–50:00 — Open floor / moderator’s queue</a></li>
   <li><a href="#off-ramp" id="toc-off-ramp" class="nav-link" data-scroll-target="#off-ramp">50:00–51:00 — Off-ramp</a></li>
   </ul></li>
   <li><a href="#fallback-plans" id="toc-fallback-plans" class="nav-link" data-scroll-target="#fallback-plans">Fallback plans</a></li>
-  <li><a href="#post-demo-debrief-do-within-1-hour" id="toc-post-demo-debrief-do-within-1-hour" class="nav-link" data-scroll-target="#post-demo-debrief-do-within-1-hour">Post-demo debrief (do within 1 hour)</a></li>
+  <li><a href="#post-session-debrief-do-within-1-hour" id="toc-post-session-debrief-do-within-1-hour" class="nav-link" data-scroll-target="#post-session-debrief-do-within-1-hour">Post-session debrief (do within 1 hour)</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/lirabenjamin/claude-code-for-researchers/blob/main/demo_script.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
@@ -194,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Claude Code Demo — Runbook</h1>
+<h1 class="title">Claude Code Walkthrough — Runbook</h1>
 </div>
 
 
@@ -211,16 +211,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Thu 2026-04-16, 2:00–3:00pm ET. Keep this file open on a second screen during practice runs.</p>
-<p>Time budget (58 min after Angela’s 1-min intro): - Preliminaries (10) — 1:00–11:00 - Survey Design (10) — 11:00–21:00 - Data Analysis (10) — 21:00–31:00 - Writing (10) — 31:00–41:00 - Q&amp;A (10) — 41:00–51:00</p>
+<p>A 60-minute live walkthrough. Keep this file open on a second screen during practice runs.</p>
+<p>Time budget (58 minutes after a 1-minute host intro): - Preliminaries (10) — 1:00–11:00 - Survey Design (10) — 11:00–21:00 - Data Analysis (10) — 21:00–31:00 - Writing (10) — 31:00–41:00 - Q&amp;A (10) — 41:00–51:00</p>
 <hr>
-<section id="pre-flight-checklist-do-in-this-order-last-15-min-before-demo" class="level2">
-<h2 class="anchored" data-anchor-id="pre-flight-checklist-do-in-this-order-last-15-min-before-demo">Pre-flight checklist (do in this order, last 15 min before demo)</h2>
+<section id="pre-flight-checklist-do-in-this-order-last-15-minutes-before-you-start" class="level2">
+<h2 class="anchored" data-anchor-id="pre-flight-checklist-do-in-this-order-last-15-minutes-before-you-start">Pre-flight checklist (do in this order, last 15 minutes before you start)</h2>
 <ul class="task-list">
 <li><label><input type="checkbox">WisprFlow running + tested</label></li>
 <li><label><input type="checkbox">Zoom: screen-share permissions, “optimize for video” OFF, recording ON</label></li>
 <li><label><input type="checkbox">Two terminal windows open, both in <code>01 research/ai_agency/</code>, zoom level ~140%</label></li>
-<li><label><input type="checkbox">Browser tabs pre-loaded (not logged out): Qualtrics, Render dashboard, Overleaf for agency paper, AsPredicted page (for Katie Q), the shared Google Doc, <strong>this tutorial repo on GitHub</strong> (you’ll show it in Survey section)</label></li>
+<li><label><input type="checkbox">Browser tabs pre-loaded (not logged out): Qualtrics, Render dashboard, Overleaf for agency paper, AsPredicted page (for the data-provenance question), the shared Google Doc, <strong>this tutorial repo on GitHub</strong> (you’ll show it in the Survey section)</label></li>
 <li><label><input type="checkbox"><code>slides.html</code> open in a third tab, full-screen tested</label></li>
 <li><label><input type="checkbox">Silence Slack, iMessage, Gmail notifications</label></li>
 <li><label><input type="checkbox">Clear <code>~/Downloads</code> clutter (you will screen-share)</label></li>
@@ -228,12 +228,12 @@ ul.task-list li input[type="checkbox"] {
 <li><label><input type="checkbox">Double-check <code>~/.claude/CLAUDE.md</code> doesn’t reveal anything private before scrolling it on-screen</label></li>
 <li><label><input type="checkbox">Water + backup mic + phone on Do Not Disturb</label></li>
 </ul>
-<p><strong>Cut list if running long</strong> (in order): <code>/latex-workflow</code> demo → second iteration of the joke survey → Bradley-Terry walkthrough depth → the research-writing detailed output. Never cut <code>/pipeline-audit</code> — it is the answer to Katie Q2. Never cut the Google Docs caveat — it’s the writing-section punchline.</p>
+<p><strong>Cut list if running long</strong> (in order): <code>/latex-workflow</code> demo → second iteration of the joke survey → Bradley-Terry walkthrough depth → the research-writing detailed output. Never cut <code>/pipeline-audit</code> — it answers the hallucination question. Never cut the Google Docs caveat — it’s the writing-section punchline.</p>
 <hr>
 </section>
-<section id="angela-intro-000100" class="level2">
-<h2 class="anchored" data-anchor-id="angela-intro-000100">Angela intro — 0:00–1:00</h2>
-<p>Mute yourself. Angela gives the 1-min intro. While she talks: - Verify screen share is on the slides - Pull up terminal #1 ready for prompts</p>
+<section id="host-intro-000100" class="level2">
+<h2 class="anchored" data-anchor-id="host-intro-000100">Host intro — 0:00–1:00</h2>
+<p>Mute yourself. The host gives the 1-minute intro. While they talk: - Verify screen share is on the slides - Pull up terminal #1 ready for prompts</p>
 <hr>
 </section>
 <section id="preliminaries-1001100" class="level2">
@@ -267,18 +267,18 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Skills</strong> are reusable slash commands. Markdown file, frontmatter, a recipe. Claude picks them up when the description matches what you’re asking for. This is where 90% of the value lives for researchers. Focus here.</p>
 <p><strong>Agents</strong> are the multi-agent thing I just mentioned — sub-processes Claude spawns for parallel work. Honestly, I haven’t found a ton of use for writing custom agents. The built-in ones are enough.</p>
 <p><strong>MCP servers</strong> are external tool connectors. I’ve got MCP servers for my email, my calendar, and — the more unusual one — my task manager. I can tell Claude what’s on my mind, how important each thing is, when it’s due, and it blocks time on my calendar and updates my task list accordingly. That’s <strong>Claude as my executive assistant</strong> — different job from Claude as my research assistant, which is what today is about. Happy to talk about the exec-assistant side offline.</p>
-<p>For the next hour, we’re focused on skills.”</p>
+<p>For the rest of this session, we’re focused on skills.”</p>
 </blockquote>
 </section>
-<section id="how-skills-work-slides-67" class="level3">
-<h3 class="anchored" data-anchor-id="how-skills-work-slides-67">5:30–7:30 — How skills work (slides 6–7)</h3>
+<section id="skill-mechanics-slides-67" class="level3">
+<h3 class="anchored" data-anchor-id="skill-mechanics-slides-67">5:30–7:30 — Skill mechanics (slides 6–7)</h3>
 <p>Slides show the actual pipeline-audit SKILL.md excerpt + the “how you create / edit” patterns. Walk through verbally, don’t switch to terminal.</p>
 <blockquote class="blockquote">
 <p>“A skill is a markdown file with YAML frontmatter and a body. Name, description, instructions. Claude reads the description and decides when to invoke it based on what you ask for.</p>
 <p><strong>Two moves.</strong></p>
 <p><strong>One — you create skills by talking to Claude.</strong> You say: ‘make me a skill that does X.’ Claude scaffolds the SKILL.md. You review, edit if needed, done.</p>
 <p><strong>Two — you refine skills the same way.</strong> Yesterday I was using my Google Docs skill and noticed that after a certain point in the output the text was garbled — dark, broken formatting. Instead of debugging by hand, I told Claude: ‘after the third section the text goes garbled. Figure out why, and edit the skill so this doesn’t happen again.’ It diagnosed it and patched the skill. That’s the workflow.</p>
-<p>We have 15 skills in the repo — <code>/plate-check</code>, <code>/aspredicted</code>, <code>/pipeline-audit</code>, <code>/research-writing</code>, <code>/log-off</code>, and more. You build your own the exact same way — by asking.”</p>
+<p>18 skills ship in this repo — <code>/plate-check</code>, <code>/aspredicted</code>, <code>/pipeline-audit</code>, <code>/research-writing</code>, <code>/log-off</code>, and more. You build your own the exact same way — by asking.”</p>
 </blockquote>
 <p><em>No live skill creation. Keep moving.</em></p>
 </section>
@@ -296,7 +296,7 @@ ul.task-list li input[type="checkbox"] {
 <p>“Four files turn Claude into a collaborator.</p>
 <p><strong><code>CLAUDE.md</code> — who you are to Claude.</strong> The slide shows an excerpt. Your role, your current priorities, your technical conventions, your writing preferences. Always loaded into every session. One big reason Claude gets better over time: you stop repeating yourself. I have a global one in <code>~/.claude/</code> and a project-specific one in each repo that overrides it where needed.</p>
 <p><strong><code>comms.md</code> — the async channel.</strong> When Claude has a question too big to answer inline, it writes here with a date. I answer when I have time. The excerpt on the slide is a real example from yesterday — Claude asking me how to handle low-rating jokes in the Bradley-Terry model. I answered later in the same file.</p>
-<p><em>Analogy that will probably land:</em> I already keep a running meeting doc with Angela — questions I want to raise, things I’ve decided, things she’s said. Most of you do the same with your advisor or a coauthor. <strong><code>comms.md</code> is that doc, with Claude.</strong> Same workflow, same purpose, same etiquette — dated entries, newest at top, answer when you have time. Nothing new to learn; just a new collaborator to apply it to.</p>
+<p><em>Analogy that usually lands:</em> I already keep a running meeting doc with my advisor — open questions, decisions taken, her answers. Most of you do the same with an advisor or a coauthor. <strong><code>comms.md</code> is that doc, with Claude.</strong> Same workflow, same purpose, same etiquette — dated entries, newest at top, answer when you have time. Nothing new to learn; just a new collaborator to apply it to.</p>
 <p><strong><code>current_state.md</code></strong> — one or two paragraphs on exactly where the project is. What we’re working on, what’s blocking, what’s next. New session starts — Claude reads this — we pick up without re-explaining.</p>
 <p><strong><code>todo.md</code></strong> — running task list Claude updates as we work. My log of what I asked for, what’s done, what’s still open.</p>
 <p>That’s the memory. Machine-readable and human-readable, both. I can inspect and edit everything Claude remembers.”</p>
@@ -305,7 +305,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="the-caveat-slide-11" class="level3">
 <h3 class="anchored" data-anchor-id="the-caveat-slide-11">10:30–11:00 — The caveat (slide 11)</h3>
 <blockquote class="blockquote">
-<p>“Before we demo: you are responsible for checking everything. The output is good enough now that it will be tempting not to. Resist that. I’ll come back to this in Q&amp;A because Katie asked exactly this question.”</p>
+<p>“Before we build anything: you are responsible for checking everything. The output is good enough now that it will be tempting not to. Resist that. I’ll come back to this in Q&amp;A, because this is the question that comes up every time.”</p>
 </blockquote>
 <p>Transition slide to Survey Design.</p>
 <hr>
@@ -317,7 +317,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="point-at-the-skills-repo-1-min">11:00–11:45 — Point at the skills repo (1 min)</h3>
 <p>Open the tutorial GitHub repo in a browser tab (pin this for now — you’ll come back to it).</p>
 <blockquote class="blockquote">
-<p>“Quick note before we build. Every skill I use today is in this repo — link in the chat from Lyle in a second. You can clone it, copy-paste any of the 15 skills into <code>~/.claude/skills/</code>, and they work immediately. A few of them need you to replace a placeholder like <code>{WORKSPACE}</code> or a phone number — the README tells you which. That’s how you get started without waiting.”</p>
+<p>“Quick note before we build. Every skill in this walkthrough lives in one public repo — link in the chat in a second. You can clone it, copy-paste any of the 18 skills into <code>~/.claude/skills/</code>, and they work immediately. A few of them need you to replace a placeholder like <code>{WORKSPACE}</code> or a phone number — the README tells you which. That’s how you get started without waiting.”</p>
 </blockquote>
 </section>
 <section id="qualtrics-build-the-joke-task-345-min" class="level3">
@@ -330,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Prompt (via WisprFlow, plan mode): &gt; “/qualtrics-survey. Plan mode first. Build me a between-subjects pilot. Participants log in, see the instructions, write a short joke. Two conditions: with AI writing assistance or without. They answer three process-agency items. Then they get randomized feedback — positive or negative — independent of the actual joke. Then three outcome-agency items. Then three meaning items. 200 subjects on Prolific US. Install the qualtrics_sdk package from GitHub first if it’s not already there. Show me the item wording before you write any code.”</p>
 <p><strong>When the plan + items appear: read them on-stream.</strong> This is the check-your-work moment:</p>
 <blockquote class="blockquote">
-<p>“This is the verification step Katie asked about. I’m reading every item before any code runs. My global CLAUDE.md enforces this for anything that codes or rates text — you don’t let Claude ship until you’ve read what it’s going to build.”</p>
+<p>“This is the verification step. I’m reading every item before any code runs. My global CLAUDE.md enforces this for anything that codes or rates text — you don’t let Claude ship until you’ve read what it’s going to build.”</p>
 </blockquote>
 <p>Approve the plan. Let it generate. Tab to Qualtrics, refresh, show the survey exists.</p>
 </section>
@@ -362,7 +362,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Prompt: &gt; “/render-survey. Take the joke task we just built in Qualtrics, but change the feedback stage. Instead of randomized feedback, participants get real peer ratings of their joke — we collect ratings from previous participants, and if fewer than three have rated a joke, we backfill with AI ratings using the same rating prompt. Keep everything else identical. Scaffold the app.”</p>
 <p>Talking point while it builds:</p>
 <blockquote class="blockquote">
-<p>“Now — the reproducibility benefit, which is directly Katie’s first question. The git commit hash gets saved with every single participant’s data row. That means my dataset is tied to the exact version of the materials and code that produced it. <strong>Tamper-evident</strong>: if anyone changes a single byte of the materials or code, the commit hash changes, and the link breaks. You can roll back to any commit and see exactly what participants saw. Fully reproducible with zero extra effort. You cannot do this in Qualtrics.”</p>
+<p>“Now — the reproducibility benefit, which answers the data-provenance question directly. The git commit hash gets saved with every single participant’s data row. That means my dataset is tied to the exact version of the materials and code that produced it. <strong>Tamper-evident</strong>: if anyone changes a single byte of the materials or code, the commit hash changes, and the link breaks. You can roll back to any commit and see exactly what participants saw. Fully reproducible with zero extra effort. You cannot do this in Qualtrics.”</p>
 </blockquote>
 </section>
 <section id="transition-30-sec" class="level3">
@@ -370,7 +370,7 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p>“Okay — I’ve collected data. Let’s clean it and analyze it, live.”</p>
 </blockquote>
-<p>Name-drop: “<code>/wbl-form-filler</code> fills Wharton Behavioral Lab submission forms, and there’s a Chrome skill that can post HITs to Prolific — both save real hours, both are in the repo. Moving on.”</p>
+<p>Name-drop: “<code>/wbl-form-filler</code> fills my behavioral lab’s study submission forms, and there’s a Chrome skill that can post HITs to Prolific — both save real hours, both are in the repo. Moving on.”</p>
 <hr>
 </section>
 </section>
@@ -412,11 +412,11 @@ ul.task-list li input[type="checkbox"] {
 <section id="pipeline-audit-key-demo-3-min" class="level3">
 <h3 class="anchored" data-anchor-id="pipeline-audit-key-demo-3-min">32:30–35:30 — <code>/pipeline-audit</code> — KEY DEMO (3 min)</h3>
 <blockquote class="blockquote">
-<p>“And this is the tool that catches it when you mess up. This is the one I’d tell everyone in this audience to install today.”</p>
+<p>“And this is the tool that catches it when you mess up. This is the one to install first.”</p>
 </blockquote>
 <p>Prompt: &gt; “/pipeline-audit”</p>
 <blockquote class="blockquote">
-<p>“It scans my code, my manuscript, and the outputs, and checks for internal consistency. Hardcoded numbers. Narrative claims that don’t match the results. Stats reported wrong. Figure captions that contradict the figure. It’s my direct answer to Katie’s hallucination question.”</p>
+<p>“It scans my code, my manuscript, and the outputs, and checks for internal consistency. Hardcoded numbers. Narrative claims that don’t match the results. Stats reported wrong. Figure captions that contradict the figure. It is the direct answer to the hallucination question.”</p>
 </blockquote>
 <p>When it flags anything, read it out loud on-stream. If it flags nothing: “A clean audit means the paper is internally consistent right now. Worth running again after any change.”</p>
 </section>
@@ -450,9 +450,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="qa-41005100" class="level2">
 <h2 class="anchored" data-anchor-id="qa-41005100">Q&amp;A — 41:00–51:00</h2>
-<p>Lyle has been collecting questions in chat. Take his queue.</p>
-<section id="katie-q1-as-collected-and-validating-data-as-collected-not-fabricated" class="level3">
-<h3 class="anchored" data-anchor-id="katie-q1-as-collected-and-validating-data-as-collected-not-fabricated">Katie Q1 — “As-Collected” and validating data as collected, not fabricated</h3>
+<p>The moderator collects questions in chat. Take that queue.</p>
+<section id="q1-as-collected-and-validating-data-as-collected-not-fabricated" class="level3">
+<h3 class="anchored" data-anchor-id="q1-as-collected-and-validating-data-as-collected-not-fabricated">Q1 — “As-Collected” and validating data as collected, not fabricated</h3>
 <p><strong>Short answer to deliver:</strong></p>
 <blockquote class="blockquote">
 <p>“AsCollected is a registry where you deposit a row per study describing: when the data was collected, where, the data ID, the non-author contributors, and anything else. Author identity is independent of the data, which is good for us because it means we can register the data without complicating authorship.</p>
@@ -460,8 +460,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Full provenance claim: ‘Pool = Prolific; raw data = timestamped Mongo dump posted at URL X; data ID = git SHA abc123, which uniquely identifies the exact materials and code that generated this data.’ That’s as-collected, not fabricated.”</p>
 </blockquote>
 </section>
-<section id="katie-q2-checks-against-claude-hallucinations-in-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="katie-q2-checks-against-claude-hallucinations-in-analysis">Katie Q2 — Checks against Claude hallucinations in analysis</h3>
+<section id="q2-checks-against-claude-hallucinations-in-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="q2-checks-against-claude-hallucinations-in-analysis">Q2 — Checks against Claude hallucinations in analysis</h3>
 <p><strong>Short answer to deliver:</strong></p>
 <blockquote class="blockquote">
 <p>“Two mechanisms and an opinion.</p>
@@ -470,14 +470,14 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>The opinion:</strong> I think well-prompted Claude code is, on average, cleaner and less bug-prone than what I’d write by hand. Humans forget to apply exclusions consistently. Humans hardcode magic numbers. Humans write <code>rowwise</code> when they meant <code>groupwise</code>. Claude does these things less often than I do, provided I’ve told it clearly what I want. The check-your-work discipline is the same you’d apply to an RA’s code — just faster, cheaper, more iterable.”</p>
 </blockquote>
 </section>
-<section id="open-floor-lyles-queue" class="level3">
-<h3 class="anchored" data-anchor-id="open-floor-lyles-queue">47:00–50:00 — Open floor / Lyle’s queue</h3>
-<p>If no questions in chat, ask via Lyle: &gt; “What’s one research task you’d want to see done this way? Drop it in chat — I’ll try one live if we have time, otherwise bring it to office hours after.”</p>
+<section id="open-floor-moderators-queue" class="level3">
+<h3 class="anchored" data-anchor-id="open-floor-moderators-queue">47:00–50:00 — Open floor / moderator’s queue</h3>
+<p>If no questions in chat, ask the room: &gt; “What’s one research task you’d want to see done this way? Drop it in chat — I’ll try one live if we have time, otherwise bring it to office hours after.”</p>
 </section>
 <section id="off-ramp" class="level3">
 <h3 class="anchored" data-anchor-id="off-ramp">50:00–51:00 — Off-ramp</h3>
 <blockquote class="blockquote">
-<p>“Thanks for staying muted. Angela, Lyle — thank you. Sticking around for 30 min on this Zoom for one-on-one setup help. Recording and skills repo in the shared doc.”</p>
+<p>“Thanks for staying muted, and thanks to the hosts. Sticking around for 30 minutes for one-on-one setup help. Recording and skills repo in the shared doc.”</p>
 </blockquote>
 <hr>
 </section>
@@ -506,10 +506,10 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td>Render deployment fails</td>
-<td>Read the <code>/render-survey</code> SKILL.md + show <code>agency6-experiment/</code> structure; skip the live build.</td>
+<td>Read the <code>/render-survey</code> SKILL.md and show an existing app’s structure; skip the live build.</td>
 </tr>
 <tr class="even">
-<td>QMD render fails mid-demo</td>
+<td>QMD render fails mid-session</td>
 <td>Show the <code>.qmd</code> file itself; say “in practice, I’d step through chunk by chunk.”</td>
 </tr>
 <tr class="odd">
@@ -522,7 +522,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td><code>/latex-gdoc-roundtrip</code> auth fails</td>
-<td>Skip the demo, deliver the Google Docs caveat verbally. That caveat is the punchline, not the live demo.</td>
+<td>Skip the live step and deliver the Google Docs caveat verbally. The caveat carries that section; the live step is a bonus.</td>
 </tr>
 <tr class="even">
 <td>Claude Code hangs on a long task</td>
@@ -540,13 +540,13 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <hr>
 </section>
-<section id="post-demo-debrief-do-within-1-hour" class="level2">
-<h2 class="anchored" data-anchor-id="post-demo-debrief-do-within-1-hour">Post-demo debrief (do within 1 hour)</h2>
+<section id="post-session-debrief-do-within-1-hour" class="level2">
+<h2 class="anchored" data-anchor-id="post-session-debrief-do-within-1-hour">Post-session debrief (do within 1 hour)</h2>
 <ul class="task-list">
 <li><label><input type="checkbox">Note what ran over-time, what went faster than planned</label></li>
 <li><label><input type="checkbox">Note which prompts landed, which needed re-phrasing live</label></li>
-<li><label><input type="checkbox">Save chat transcript from Zoom</label></li>
-<li><label><input type="checkbox">Update this file for the potential sequel Angela mentioned</label></li>
+<li><label><input type="checkbox">Save the chat transcript</label></li>
+<li><label><input type="checkbox">Update this file for the next run</label></li>
 </ul>
 
 

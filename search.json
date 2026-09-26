@@ -4,14 +4,14 @@
     "href": "skills/index.html",
     "title": "Skills",
     "section": "",
-    "text": "Each skill is a single SKILL.md file. Install by copying the folder into ~/.claude/skills/ and restarting Claude Code:\nSome skills need placeholder values replaced before first use — check the “Needs config?” column below. Skill names link to the source on GitHub, where SKILL.md renders cleanly."
+    "text": "Each skill is a single SKILL.md file. Install by copying the folder into ~/.claude/skills/ and restarting Claude Code:\n12 of the 18 skills need configuration before first use; the “Needs config?” column below names it for each one. Skill names link to the source on GitHub, where SKILL.md renders cleanly."
   },
   {
     "objectID": "skills/index.html#skills-overview",
     "href": "skills/index.html#skills-overview",
     "title": "Skills",
     "section": "Skills overview",
-    "text": "Skills overview\n\n\n\nSkill\nWhat it does\nNeeds config?\n\n\n\n\narchive-raw-data\nEnd-of-collection workflow: export Mongo → JSONL, commit to repo, archive to Zenodo with DOI, optionally drop Mongo data\nZENODO_TOKEN, MONGODB_URI in .env; mongoexport installed\n\n\naspredicted\nDraft an AsPredicted pre-registration by walking through each field with you\nNo\n\n\ndata-analysis\nDefault workflow for cleaning, exploration, visualization\nNo\n\n\ngws\nInteract with Google Workspace (Drive, Docs, Sheets, Gmail, Calendar) via the gws CLI\nRequires gws CLI installed + authed\n\n\nlatex-gdoc-roundtrip\nPush a LaTeX paper to a formatted Google Doc for coauthor review; pull edits back\nRequires gws CLI\n\n\nlatex-workflow\nBuild, commit, push a LaTeX paper; coauthors edit in Overleaf\nNo\n\n\nlog-off\nEnd-of-session ritual — updates todo/comms/current_state and creates a handoff\n{WORKSPACE}, {PHONE}\n\n\nnotify-me\nSend yourself an iMessage when a long task finishes\n{PHONE}; macOS only\n\n\nopportunity-hunter\nFind and rank jobs, grants, prizes, fellowships from your profile\n{REPORTS_DIR}; profile in CLAUDE.md\n\n\npipeline-audit\nAudit a data→code→output→manuscript pipeline for inconsistencies and magic numbers\nNo\n\n\nplate-check\nWeekly review pulling from Gmail, Calendar, tasks, todo.md; generates a dashboard\n{WORKSPACE}, {PHONE}\n\n\nqualtrics-survey\nBuild Qualtrics surveys via the API\n.env with QUALTRICS_API_TOKEN\n\n\nquarto-version-toggle\nRender one Quarto HTML doc with multiple pre-rendered versions, switchable via buttons\nNo\n\n\nrender-survey\nScaffold and deploy a full-stack behavioral research web app to Render\nRender + Mongo Atlas + OPENAI_API_KEY\n\n\nresearch-writing\nDraft methods, results, or discussion sections following your conventions\nNo\n\n\nsemantic-pipeline\nCompute word/sentence/document-level semantic diversity measures (DSI, SBERT, chamfer distinctness) on a parquet of texts\nOPENAI_API_KEY for the document-level step; dedicated Python venv\n\n\nwbl-form-filler\nFill Wharton Behavioral Lab study submission forms on JotForm\nWharton-specific; all defaults need replacing\n\n\nzotero-fetch\nFetch a Zotero collection’s items and PDFs to a local folder so Claude can read them\nZOTERO_API_KEY, ZOTERO_USER_ID in your shell env"
+    "text": "Skills overview\n\n\n\nSkill\nPurpose\nNeeds config?\n\n\n\n\narchive-raw-data\nEnd-of-collection workflow: export Mongo → JSONL, commit to repo, archive to Zenodo with DOI, optionally drop Mongo data\nZENODO_TOKEN, MONGODB_URI in .env; mongoexport installed\n\n\naspredicted\nDraft an AsPredicted pre-registration by walking through each field with you\nNo\n\n\ndata-analysis\nDefault workflow for cleaning, exploration, visualization\nNo\n\n\ngws\nInteract with Google Workspace (Drive, Docs, Sheets, Gmail, Calendar) via the gws CLI\nRequires gws CLI installed + authed\n\n\nlatex-gdoc-roundtrip\nPush a LaTeX paper to a formatted Google Doc for coauthor review; pull edits back\nRequires gws CLI\n\n\nlatex-workflow\nBuild, commit, push a LaTeX paper; coauthors edit in Overleaf\nNo\n\n\nlog-off\nEnd-of-session ritual — updates todo/comms/current_state and creates a handoff\n{WORKSPACE}, {PHONE}\n\n\nnotify-me\nSend yourself an iMessage when a long task finishes\n{PHONE}; macOS only\n\n\nopportunity-hunter\nFind and rank jobs, grants, prizes, fellowships from your profile\n{REPORTS_DIR}; profile in CLAUDE.md\n\n\npipeline-audit\nAudit a data→code→output→manuscript pipeline for inconsistencies and magic numbers\nNo\n\n\nplate-check\nWeekly review pulling from Gmail, Calendar, tasks, todo.md; generates a dashboard\n{WORKSPACE}, {PHONE}\n\n\nqualtrics-survey\nBuild Qualtrics surveys via the API\n.env with QUALTRICS_API_TOKEN\n\n\nquarto-version-toggle\nRender one Quarto HTML doc with multiple pre-rendered versions, switchable via buttons\nNo\n\n\nrender-survey\nScaffold and deploy a full-stack behavioral research web app to Render\nRender + Mongo Atlas + OPENAI_API_KEY\n\n\nresearch-writing\nDraft methods, results, or discussion sections following your conventions\nNo\n\n\nsemantic-pipeline\nCompute word/sentence/document-level semantic diversity measures (DSI, SBERT, chamfer distinctness) on a parquet of texts\nOPENAI_API_KEY for the document-level step; dedicated Python venv\n\n\nwbl-form-filler\nFill Wharton Behavioral Lab study submission forms on JotForm\nWharton-specific; all defaults need replacing\n\n\nzotero-fetch\nFetch a Zotero collection’s items and PDFs to a local folder so Claude can read them\nZOTERO_API_KEY, ZOTERO_USER_ID in your shell env"
   },
   {
     "objectID": "skills/index.html#install-flow",
@@ -32,35 +32,35 @@
     "href": "index.html",
     "title": "Claude Code for Researchers",
     "section": "",
-    "text": "This site hosts everything from the Claude Code demo: the slide deck, a CLAUDE.md template, and 18 skills packaged for copy-paste install.\nEverything is free to fork, adapt, and re-share."
+    "text": "This site packages a working Claude Code setup for empirical research: the slide deck, a CLAUDE.md template, and 18 ready-to-install skills.\nEverything is free to fork, adapt, and re-share."
   },
   {
     "objectID": "index.html#start-here",
     "href": "index.html#start-here",
     "title": "Claude Code for Researchers",
     "section": "Start here",
-    "text": "Start here\nIf you’ve never used Claude Code before:\n\nInstall Claude Code. Follow the official install guide.\nInstall WisprFlow (optional but recommended). Talking beats typing.\nCopy the CLAUDE.md template. Grab TEMPLATE_CLAUDE.md, fill in your own role/projects/preferences, and save it to ~/.claude/CLAUDE.md. This is the single highest-leverage thing you can do.\nInstall one skill. Pick one from the skills page that matches something you already do manually. /pipeline-audit is a good first choice if you write papers; /data-analysis is a good first choice if you don’t."
+    "text": "Start here\nIf you have never used Claude Code before:\n\nInstall Claude Code. Follow the official install guide.\nInstall WisprFlow (optional but recommended). Talking beats typing.\nCopy the CLAUDE.md template. Grab TEMPLATE_CLAUDE.md, fill in your own role, projects, and preferences, then save it to ~/.claude/CLAUDE.md. No other setup step pays off as much.\nInstall one skill. Pick one from the skills page that matches something you already do by hand. /pipeline-audit is a good first choice if you write papers; /data-analysis is a good first choice if you don’t."
   },
   {
     "objectID": "index.html#installing-a-skill",
     "href": "index.html#installing-a-skill",
     "title": "Claude Code for Researchers",
     "section": "Installing a skill",
-    "text": "Installing a skill\n# From this repo's root:\ncp -r skills/pipeline-audit ~/.claude/skills/\nRestart Claude Code. The skill is now callable as /pipeline-audit.\nSome skills need placeholder variables filled in (paths, phone numbers, credentials) — grep for {{ in the SKILL.md before first use. The skills page lists what each one needs."
+    "text": "Installing a skill\n# From this repo's root:\ncp -r skills/pipeline-audit ~/.claude/skills/\nRestart Claude Code. The skill is now callable as /pipeline-audit.\n12 of the 18 skills need configuration before first use. Grep for {{ in a SKILL.md to find placeholder variables: paths, phone numbers, credentials. The “Needs config?” column on the skills page lists the API keys, CLIs, and accounts required by each skill."
   },
   {
     "objectID": "index.html#navigation",
     "href": "index.html#navigation",
     "title": "Claude Code for Researchers",
     "section": "Navigation",
-    "text": "Navigation\n\nSlides — the Google Slides deck Ben used during the demo\nSkills — 18 slash commands you can install\nCLAUDE.md template — the starter file for your own global memory"
+    "text": "Navigation\n\nSlides — the concept deck behind the walkthrough\nSkills — 18 installable slash commands\nCLAUDE.md template — the starter file for your own global memory"
   },
   {
-    "objectID": "index.html#about-the-demo",
-    "href": "index.html#about-the-demo",
+    "objectID": "index.html#about-the-walkthrough",
+    "href": "index.html#about-the-walkthrough",
     "title": "Claude Code for Researchers",
-    "section": "About the demo",
-    "text": "About the demo\nAudience: Wharton marketing department + invited colleagues. Third-year psychology PhD student as the target persona.\nRunning example: a joke-writing task with AI assistance, agency measures, and peer ratings — built live in Qualtrics, then rebuilt as a self-hosted web app to show why self-hosting matters for reproducibility.\nFormat: all live, no pre-recorded segments, one hour, Q&A in final 10 minutes."
+    "section": "About the walkthrough",
+    "text": "About the walkthrough\nIntended reader: an empirical researcher who runs studies, analyzes data, and writes papers. The material assumes roughly the skill level of a third-year PhD student in psychology.\nRunning example: a joke-writing task with AI assistance, agency measures, and peer ratings. The walkthrough builds the task first in Qualtrics, then rebuilds it as a self-hosted web app to show why self-hosting matters for reproducibility.\nFormat: roughly 50 minutes of live work across four sections (setup, survey design, data analysis, writing), plus 10 minutes of questions. Nothing is pre-recorded."
   },
   {
     "objectID": "index.html#reporting-bugs",
@@ -74,7 +74,7 @@
     "href": "index.html#license",
     "title": "Claude Code for Researchers",
     "section": "License",
-    "text": "License\nMaterials shared freely. Adapt, fork, improve, re-share. No warranty — you are responsible for checking what Claude produces."
+    "text": "License\nMaterials by Ben Lira, shared freely. Adapt, fork, improve, re-share. No warranty: you are responsible for checking Claude’s output."
   },
   {
     "objectID": "TEMPLATE_CLAUDE.html",
